@@ -1,26 +1,36 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-paper: #f3f6f1;
+  --color-paper-dim: #e5e9e1;
+  --color-ink: #12150f;
+  --color-ink-muted: #4b4f47;
+  --color-coal: #0c0e09;
+  --color-coal-dim: #161a13;
+  --color-bone: #edf0ea;
+  --color-bone-muted: #a2a69e;
+  --color-lime: #92d00b;
+  --color-lime-bright: #a7d960;
+  --color-lime-soft: #bfe58e;
+  --color-lime-deep: #375900;
+
+  /* semantic tokens — values flipped by .dark below */
+  --color-bg: var(--color-paper);
+  --color-bg-dim: var(--color-paper-dim);
+  --color-fg: var(--color-ink);
+  --color-fg-muted: var(--color-ink-muted);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --color-bg: var(--color-coal);
+  --color-bg-dim: var(--color-coal-dim);
+  --color-fg: var(--color-bone);
+  --color-fg-muted: var(--color-bone-muted);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
 }
