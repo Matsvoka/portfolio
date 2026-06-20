@@ -72,7 +72,7 @@ Usado em dois contextos com o mesmo conteúdo (título+seta, preview de mídia, 
 
 Estrutura interna (linhas, nessa ordem): Título + seta (canto) → preview (imagem/vídeo/gif, placeholder neutro) → descrição → tecnologias (ícone + nome, separadas por "·", com "+N" se não couber tudo numa linha). **O card inteiro é clicável**, leva para `/projetos/[slug]`.
 
-No `variant="popover"`: comportamento de tooltip customizado — hover exibe, clique persiste (dispensável via clique fora ou tecla Esc, garantindo caminho 100% por teclado). Sem outline no card (só uma sombra única via `filter: drop-shadow` no wrapper, cobrindo o contorno combinado de card+tail). O tail é um quadrado de 16px rotacionado 45°, mesma cor de fundo do card, parcialmente escondido atrás dele (z-index negativo). Direção de expansão (cima/baixo) é **responsiva**: escolhe o lado que cabe por completo na viewport. No hover do card já persistido, a seta muda de cinza para Lime Deep.
+No `variant="popover"`: comportamento de tooltip customizado — hover exibe, clique persiste (dispensável via clique fora ou tecla Esc, garantindo caminho 100% por teclado). Sem outline no card (só uma sombra única via `filter: drop-shadow` no wrapper, cobrindo o contorno combinado de card+tail) — é o outline que causava a "costura" na base do tail, então a solução final foi remover o outline, não complicar a forma do tail. O tail é um triângulo simples (técnica de CSS border, sem cantos arredondados), do mesmo tom de fundo do card, encostado nele sem gap. Direção de expansão (cima/baixo) é **responsiva**: escolhe o lado que cabe por completo na viewport. No hover do card já persistido, a seta muda de cinza para Lime Deep.
 
 ## 5. Home — design por seção
 
