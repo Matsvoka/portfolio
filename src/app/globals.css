@@ -21,6 +21,9 @@
   --color-bg-dim: var(--color-paper-dim);
   --color-fg: var(--color-ink);
   --color-fg-muted: var(--color-ink-muted);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 .dark {
