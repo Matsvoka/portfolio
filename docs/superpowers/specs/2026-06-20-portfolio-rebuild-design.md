@@ -14,7 +14,7 @@
 | Tópico | Decisão |
 |---|---|
 | Conteúdo (CV, experiências, projetos reais) | Placeholder por agora. |
-| Ferramenta interativa embutida | Mocks leves do zero (Doctag, GraphIt, HCP App), uma interação-chave cada, dados fictícios. Não embutir/iframe código real. |
+| Ferramenta interativa embutida | Mocks leves do zero, uma interação-chave cada, dados fictícios, sem embutir/iframe código real: **Doctag** (arrastar uma tag) e **GraphIt** (desenhar um nó) têm mock interativo (`demo.type: 'mock'`); **HCP App** fica só com vídeo/gif (`demo.type: 'video'` ou `'gif'`) — nem todo projeto precisa de mock interativo. |
 | Idiomas | Só PT-BR por agora. Sem next-intl. Header já reserva espaço pra um seletor de idioma (placeholder visual "PT-BR ⌄", sem lógica). |
 | CTAs de contato | Email + LinkedIn + GitHub (ícones), visíveis no **Hero e no Footer** (decisão revisada — não ficam no header) + Download de CV em PDF (no footer). Sem formulário de contato. |
 | Arquitetura de navegação | Shell único de scroll (`/`) + páginas próprias por projeto (`/projetos/[slug]`). |
