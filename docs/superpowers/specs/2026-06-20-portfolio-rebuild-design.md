@@ -83,7 +83,7 @@ Logo/iniciais à esquerda. Anchor nav (Sobre/Experiência/Projetos/Skills/Forma�
 Centralizado (inspirado no marcoditoro, mas sem CTA): foto redonda (placeholder, ~200px) com anel lime, nome em Geist Sans peso 900/tracking apertado, subtítulo de cargo (mono, uppercase), ícones de contato (email/GitHub/LinkedIn) abaixo. Sem email em texto, sem botões de CTA — a nav e o scroll guiam o resto.
 
 ### 5.3 Experiência
-Timeline vertical: linha e dots em cinza (`Bone Muted`) para entradas passadas; dot lime com leve glow só na entrada atual. Cada entrada é um grupo [logo da empresa (acompanha a altura do bloco de texto) + cargo (maior peso/tamanho, Lime Deep se for a entrada atual) + nome da empresa (peso médio, neutro) + data (mono, neutro)], com gap maior entre cargo/nome e menor entre nome/data. Acima da entrada, se houver `projectSlugs`, label "Projetos" (mono, discreto) + chips clicáveis (hover/press) que abrem o `ProjectPreviewCard` (`variant="popover"`).
+Timeline vertical: a linha conectora é **sempre lime**; os dots ficam em cinza (`Bone Muted`) para entradas passadas, e lime com leve glow só na entrada atual. Cada entrada é um grupo [logo da empresa (acompanha a altura do bloco de texto) + cargo (maior peso/tamanho, Lime Deep se for a entrada atual) + nome da empresa (peso médio, neutro) + data (mono, neutro)], com gap maior entre cargo/nome e menor entre nome/data. Acima da entrada, se houver `projectSlugs`, label "Projetos" (mono, discreto) + chips clicáveis (hover/press) que abrem o `ProjectPreviewCard` (`variant="popover"`).
 
 ### 5.4 Projetos (home) + Skills + Formação — grid de 2 colunas
 A partir da seção Projetos, a página vira um grid de 2 colunas (colapsa para 1 coluna em mobile):
