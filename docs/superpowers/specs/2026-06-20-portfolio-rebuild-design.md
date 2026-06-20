@@ -1,47 +1,47 @@
-# Portfolio Rebuild — Design (em progresso)
+# Portfolio Rebuild — Design
 
-> Status: **brainstorming em andamento**. Este arquivo é o estado da sessão de design — decisões já fechadas + o que falta cobrir. Ao retomar, releia PRODUCT.md e DESIGN.md, depois continue a partir de "Próximos passos" no final deste arquivo, seção "## 5. Home — design por seção" em diante.
+> Status: **design completo, aguardando revisão final do usuário antes de virar plano de implementação.**
 
 ## 0. Contexto e referências
 
-- **PRODUCT.md / DESIGN.md** (raiz do repo) — fonte de verdade para tom, princípios, paleta lime e regras de uso. Releia antes de qualquer decisão de design ou conteúdo.
-- **Referência estrutural**: [marcoditoro.com.br/pt](https://www.marcoditoro.com.br/pt) — fluxo About/Experience/Projects/Skills/Education, escaneável, lista de projetos com logo+descrição, ícones de contato, CV em PDF. Visual minimalista — **não copiar o visual**, só a estrutura.
-- **Referência de stack**: [github.com/Frombull/site-feliz](https://github.com/Frombull/site-feliz) — Next.js 15 (App Router) + TypeScript + Tailwind v4 + next-intl + lucide-react + animejs. Página única em grid 2 colunas. **Borrow stack, not visual restraint** (PRODUCT.md) — e **não** usar animejs/scroll-reveal/orquestração de entrada (proibido por DESIGN.md: "Don't add heavy or gimmicky animation").
-- Repo deste projeto: estava vazio (só CLAUDE.md/PRODUCT.md/DESIGN.md) no início desta sessão — projeto a ser criado do zero.
+- **PRODUCT.md / DESIGN.md** (raiz do repo) — fonte de verdade para tom, princípios, paleta lime e regras de uso.
+- **Referência estrutural**: [marcoditoro.com.br/pt](https://www.marcoditoro.com.br/pt) — fluxo About/Experience/Projects/Skills/Education, escaneável. Hero centralizado com foto, nome, subtítulo, email e ícones de contato (GitHub/LinkedIn) abaixo, sem CTA. **Não copiar o visual**, só a estrutura.
+- **Referência de stack**: [github.com/Frombull/site-feliz](https://github.com/Frombull/site-feliz) — Next.js 15 (App Router) + TypeScript + Tailwind v4 + lucide-react. Página em grid 2 colunas. **Borrow stack, not visual restraint.**
+- Repo: criado do zero nesta sessão.
 
-## 1. Decisões já fechadas (respostas do usuário)
+## 1. Decisões fechadas
 
 | Tópico | Decisão |
 |---|---|
-| Conteúdo (CV, experiências, projetos reais) | **Placeholder por agora** — conteúdo real entra depois, fora desta sessão. Estruturar com placeholders claramente marcados. |
-| Ferramenta interativa embutida | Não é uma única tool — são **mocks de pequenas funções** de projetos reais do usuário: **Doctag** (app desktop de tagging de documentos, Electron+React+Postgres embutido), **GraphIt** (ferramenta de grafos/visualização, migrando de HTML vanilla pra React/Vite), **HCP App** (sistema de produção, FastAPI+React). Alguns projetos terão mock interativo, outros só vídeo/gif. |
-| Natureza do mock | **Recriações leves do zero** — componentes React simples, isolados, com dados fictícios, ilustrando **uma interação-chave** de cada projeto (ex: arrastar uma tag no Doctag, desenhar um nó no GraphIt). **Não** embutir/iframe código real dos apps. |
-| Idiomas | **Só PT-BR por agora.** Sem next-intl nesta fase; nada impede adicionar i18n depois, mas não faz parte do escopo atual. |
-| CTAs de contato | **Email + LinkedIn + GitHub** (ícones, sempre visíveis) **+ Download de CV em PDF**. Sem formulário de contato. |
-| Arquitetura de navegação | **Aprovada: Approach A** — shell único de scroll (`/`) escaneável em ~30s + páginas próprias por projeto (`/projetos/[slug]`) com a case study completa. Rejeitadas: expansão inline sem rota própria (conflita com exigência de página própria por projeto do PRODUCT.md) e site multi-página tradicional (mata o "scan em 30s"). |
+| Conteúdo (CV, experiências, projetos reais) | Placeholder por agora. |
+| Ferramenta interativa embutida | Mocks leves do zero (Doctag, GraphIt, HCP App), uma interação-chave cada, dados fictícios. Não embutir/iframe código real. |
+| Idiomas | Só PT-BR por agora. Sem next-intl. Header já reserva espaço pra um seletor de idioma (placeholder visual "PT-BR ⌄", sem lógica). |
+| CTAs de contato | Email + LinkedIn + GitHub (ícones), visíveis no **Hero e no Footer** (decisão revisada — não ficam no header) + Download de CV em PDF (no footer). Sem formulário de contato. |
+| Arquitetura de navegação | Shell único de scroll (`/`) + páginas próprias por projeto (`/projetos/[slug]`). |
+| Tema padrão | **Escuro**, com toggle persistido (localStorage). |
+| Tipografia | **Geist Sans** (display/corpo, via `next/font`, pesos 100–900) + **JetBrains Mono** (metadados: datas, tags, labels). |
 
 ## 2. Stack & arquitetura — ✅ aprovado
 
-- **Next.js 15 (App Router) + TypeScript + Tailwind CSS v4.** Sem next-intl (PT-BR único). Deploy alvo: Vercel.
+- **Next.js 15 (App Router) + TypeScript + Tailwind CSS v4.** Sem next-intl. Deploy: Vercel.
 - **Rotas:**
-  - `/` — scroll único: Hero/Sobre → Experiência → Projetos → Skills → Formação → Footer/Contato.
-  - `/projetos/[slug]` — case study completa de cada projeto (narrativa, stack, papel, mock ou vídeo/gif, links).
-  - Sem rota de índice `/projetos` separada (a seção da home já lista todos — YAGNI).
+  - `/` — scroll único: Header fixo → Hero/Sobre → Experiência → [Projetos | Skills+Formação] → Footer/Contato.
+  - `/projetos/[slug]` — case study completa de cada projeto.
+  - Sem rota de índice `/projetos` separada.
 
 ## 3. Modelo de conteúdo — ✅ aprovado
-
-Arquivos TS tipados em `src/content/` (sem CMS), fonte única consumida tanto pela home quanto pela página de projeto.
 
 ```ts
 type Project = {
   slug: string;
   title: string;
-  oneLiner: string;          // lista compacta da home
-  tags: string[];            // stack/skills -> badges
+  oneLiner: string;
+  tags: string[];            // stack -> badges com ícone
   role: string;
   narrative: string[];       // parágrafos da case study
+  demoIndex: number;         // depois de quantos parágrafos de `narrative` o demo aparece (0 = logo após o cabeçalho)
   demo:
-    | { type: 'mock'; component: string }   // chave do widget React
+    | { type: 'mock'; component: string }   // chave no registry de src/components/project-mocks/
     | { type: 'video'; src: string }
     | { type: 'gif'; src: string }
     | { type: 'none' };
@@ -53,43 +53,66 @@ type ExperienceEntry = {
   role: string;
   period: string;
   description: string;
+  logo?: string;
   projectSlugs?: string[];   // liga Experience aos Projects relacionados
 };
 ```
 
-- `Skills`: lista tipada simples (categoria + itens).
-- `Education`: lista tipada simples (grau + instituição + período).
-- **Fora de escopo** (não pedido no PRODUCT.md): certificados, idiomas, QR code — presentes no site-feliz mas não entram aqui (YAGNI).
+- **Projeto "pessoal" vs "ligado a experiência"** é **derivado**, não é um campo: um `Project` é pessoal se seu `slug` não aparece em nenhum `ExperienceEntry.projectSlugs`. Projetos pessoais aparecem direto na seção Projetos da home; projetos ligados a um emprego aparecem só como chip clicável dentro daquela entrada de Experiência (ver seção 5.3).
+- `Skills`: lista tipada (categoria + itens, cada item com nome + ícone).
+- `Education`: lista tipada (grau + instituição + período).
+- Fora de escopo: certificados, idiomas, QR code (YAGNI).
 
-## 4. Pendente — próximas seções do design a apresentar
+## 4. Componente compartilhado: `ProjectPreviewCard`
 
-Ainda não apresentadas/aprovadas nesta sessão. Retomar a skill `superpowers:brainstorming` (etapa "Presentar design sections") e cobrir, uma a uma, com aprovação do usuário a cada bloco:
+Usado em dois contextos com o mesmo conteúdo (título+seta, preview de mídia, descrição, tecnologias):
 
-### 4.1 Home — design por seção
-- Header/nav fixo: anchor nav (Sobre/Experiência/Projetos/Skills/Formação) + toggle de tema + ícones de contato (email/LinkedIn/GitHub) — inspirado na nav do marcoditoro.com.br, mas com identidade lime.
-- Hero/Sobre: como evitar o anti-padrão "hero genérico com gradiente blob" (PRODUCT.md anti-reference) — propor layout alternativo.
-- Experiência: cada entrada pode listar chips/links de `projectSlugs` relacionados.
-- Projetos: lista compacta na home (título + oneLiner + tags + link) — **sem** mock pesado aqui, isso fica só na página própria.
-- Skills, Formação: estrutura simples, sem grid de ícones repetitivo (anti-referência: "identical icon-card grids").
-- Footer/Contato: CTA de download de CV + ícones de contato.
+- **`variant="popover"`**: acionado pelo chip de projeto dentro de uma entrada de Experiência.
+- **`variant="inline"`**: renderizado direto na seção Projetos da home (projetos pessoais), sem necessidade de clique/hover.
 
-### 4.2 Página de projeto (`/projetos/[slug]`) + sistema de mock-widgets
-- Template da case study: cabeçalho (título, tags, links), narrativa, slot de demo.
-- Slot de demo: renderiza `mock` (componente React lazy-loaded), `video`, `gif` ou nada, conforme o campo `demo` do Project.
-- Convenção de pastas/nomes pros componentes de mock (um por projeto: Doctag, GraphIt, HCP).
-- Lazy-loading dos mocks (evitar custo de bundle na home).
-- Acessibilidade dos mocks (teclado, prefers-reduced-motion) — requisito do PRODUCT.md (WCAG AA).
+Estrutura interna (linhas, nessa ordem): Título + seta (canto) → preview (imagem/vídeo/gif, placeholder neutro) → descrição → tecnologias (ícone + nome, separadas por "·", com "+N" se não couber tudo numa linha). **O card inteiro é clicável**, leva para `/projetos/[slug]`.
 
-### 4.3 Tema, tipografia, motion, não-funcionais
-- Tema claro/escuro: implementação via CSS variables (tokens já definidos em DESIGN.md) + toggle persistido (localStorage), tema padrão a decidir (sugestão: dark, a confirmar com usuário).
-- Tipografia: DESIGN.md sugere Space Grotesk / Geist Sans / IBM Plex Sans (display) + JetBrains Mono / IBM Plex Mono (metadata) — escolher e confirmar.
-- Motion: responsivo, nunca coreografado (nada de scroll-reveal/orquestração tipo site-feliz); suporte a `prefers-reduced-motion` em toda transição.
-- Não-funcionais: performance (lazy-load de mocks, `next/image` pra logos/screenshots), WCAG AA, deploy Vercel.
+No `variant="popover"`: comportamento de tooltip customizado — hover exibe, clique persiste (dispensável via clique fora ou tecla Esc, garantindo caminho 100% por teclado). Sem outline no card (só uma sombra única via `filter: drop-shadow` no wrapper, cobrindo o contorno combinado de card+tail). O tail é um quadrado de 16px rotacionado 45°, mesma cor de fundo do card, parcialmente escondido atrás dele (z-index negativo). Direção de expansão (cima/baixo) é **responsiva**: escolhe o lado que cabe por completo na viewport. No hover do card já persistido, a seta muda de cinza para Lime Deep.
 
-## 5. Próximos passos
+## 5. Home — design por seção
 
-1. Retomar brainstorming a partir da seção 4.1 (Home — design por seção), uma seção por vez, com aprovação do usuário.
-2. Seguir para 4.2 e 4.3.
-3. Self-review do spec (placeholders, contradições, ambiguidade, escopo).
-4. Usuário revisa o spec final escrito.
-5. Invocar a skill `superpowers:writing-plans` para o plano de implementação.
+### 5.1 Header/Nav fixo
+Logo/iniciais à esquerda. Anchor nav (Sobre/Experiência/Projetos/Skills/Formação) com underline lime no item ativo. À direita: toggle de tema, seguido do seletor de idioma (placeholder "PT-BR ⌄", sem lógica de i18n). **Sem ícones de contato** (ficam só no Hero e Footer). Mobile: nav colapsa num menu.
+
+### 5.2 Hero/Sobre
+Centralizado (inspirado no marcoditoro, mas sem CTA): foto redonda (placeholder, ~200px) com anel lime, nome em Geist Sans peso 900/tracking apertado, subtítulo de cargo (mono, uppercase), ícones de contato (email/GitHub/LinkedIn) abaixo. Sem email em texto, sem botões de CTA — a nav e o scroll guiam o resto.
+
+### 5.3 Experiência
+Timeline vertical: linha e dots em cinza (`Bone Muted`) para entradas passadas; dot lime com leve glow só na entrada atual. Cada entrada é um grupo [logo da empresa (acompanha a altura do bloco de texto) + cargo (maior peso/tamanho, Lime Deep se for a entrada atual) + nome da empresa (peso médio, neutro) + data (mono, neutro)], com gap maior entre cargo/nome e menor entre nome/data. Acima da entrada, se houver `projectSlugs`, label "Projetos" (mono, discreto) + chips clicáveis (hover/press) que abrem o `ProjectPreviewCard` (`variant="popover"`).
+
+### 5.4 Projetos (home) + Skills + Formação — grid de 2 colunas
+A partir da seção Projetos, a página vira um grid de 2 colunas (colapsa para 1 coluna em mobile):
+- **Coluna principal (larga)**: seção Projetos — só projetos pessoais (ver derivação na seção 3), cada um renderizado como `ProjectPreviewCard` (`variant="inline"`), empilhados.
+- **Coluna lateral (estreita)**: Skills (categoria + chips com ícone, sem grid de ícones repetitivo) e, abaixo, Formação (grau em destaque, instituição abaixo, data abaixo da instituição).
+
+Skills e Formação continuam como anchors próprios do header nav (`#skills`, `#formacao`) mesmo estando visualmente agrupados na coluna lateral ao lado de Projetos — o anchor aponta para o sub-bloco dentro do grid, não para uma seção full-width separada.
+
+### 5.5 Footer/Contato
+Centralizado (rima com o Hero): CTA de download de CV (botão lime fill) → ícones de contato (email/GitHub/LinkedIn) → copyright em mono. Herda o tema ativo.
+
+## 6. Página de projeto (`/projetos/[slug]`) + mock-widgets
+
+- **Template**: cabeçalho (título, tags, links de GitHub/live) → narrativa intercalada com o slot de demo na posição indicada por `demoIndex` (0 = demo logo após o cabeçalho; N = depois do N-ésimo parágrafo). Permite que cada projeto decida se o demo precisa de contexto prévio ou não.
+- **Slot de demo**: renderiza `mock` (componente React lazy-loaded), `video`, `gif` ou nada, conforme `Project.demo`.
+- **Convenção de pastas**: `src/components/project-mocks/<slug>/index.tsx` — um componente por projeto (`doctag/`, `graphit/`, `hcp/`), resolvido via registry pela chave `demo.component`.
+- **Lazy-loading**: `next/dynamic` com `ssr: false` + skeleton de loading, para não pesar o bundle de páginas que não usam aquele mock.
+- **Acessibilidade dos mocks**: caminho 100% via teclado para a interação-chave de cada mock (ex: mover uma tag também funciona com setas+enter, não só drag-and-drop) + suporte a `prefers-reduced-motion`.
+
+## 7. Tema, tipografia, motion, não-funcionais
+
+- **Tema**: claro/escuro via CSS variables (tokens do DESIGN.md), toggle persistido em localStorage, **padrão escuro**.
+- **Tipografia**: Geist Sans (display/corpo) + JetBrains Mono (metadados/labels/datas/tags), via `next/font`.
+- **Motion**: responsivo (feedback real em hover/focus/press/drag), nunca coreografado — sem scroll-reveal ou orquestração de entrada. `prefers-reduced-motion` suportado em toda transição (inclusive nos mock-widgets).
+- **Não-funcionais**: lazy-load dos mocks (seção 6); `next/image` para logos de empresa e screenshots/previews; WCAG AA (contraste, navegação por teclado completa); deploy Vercel.
+
+## 8. Próximos passos
+
+1. ~~Brainstorming das seções 4.1–4.3~~ — concluído.
+2. Self-review do spec (placeholders, contradições, ambiguidade, escopo).
+3. Usuário revisa o spec final escrito.
+4. Invocar a skill `superpowers:writing-plans` para o plano de implementação.
