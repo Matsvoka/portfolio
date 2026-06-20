@@ -2,6 +2,7 @@
 
 import { ThemeToggle } from '@/components/theme/theme-toggle';
 import { useActiveSection } from './use-active-section';
+import { MobileNav } from './mobile-nav';
 
 export const NAV_ITEMS = [
   { id: 'sobre', label: 'Sobre' },
@@ -44,6 +45,7 @@ export function Header() {
           >
             PT-BR ⌄
           </span>
+          <MobileNav items={NAV_ITEMS} activeId={activeId} />
         </div>
       </div>
     </header>
