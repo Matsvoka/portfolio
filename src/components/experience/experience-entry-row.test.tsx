@@ -50,4 +50,23 @@ describe('ExperienceEntryRow', () => {
     );
     expect(screen.getByText('Desenvolvedor Full-stack').className).not.toContain('text-lime-deep');
   });
+
+  it('renders a "Projetos" label and chip when projectSlugs is non-empty', () => {
+    render(
+      <ul>
+        <ExperienceEntryRow entry={{ ...currentEntry, projectSlugs: ['hcp-app'] }} />
+      </ul>,
+    );
+    expect(screen.getByText('Projetos')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'HCP App' })).toBeInTheDocument();
+  });
+
+  it('renders no "Projetos" label when projectSlugs is empty', () => {
+    render(
+      <ul>
+        <ExperienceEntryRow entry={currentEntry} />
+      </ul>,
+    );
+    expect(screen.queryByText('Projetos')).not.toBeInTheDocument();
+  });
 });

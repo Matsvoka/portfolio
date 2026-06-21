@@ -104,6 +104,15 @@ describe('ProjectPreviewPopover', () => {
     expect(screen.getByRole('link').className).not.toContain('drop-shadow');
   });
 
+  it('applies a custom className to the trigger button', () => {
+    render(
+      <ProjectPreviewPopover project={project} triggerClassName="custom-trigger">
+        <span>Doctag</span>
+      </ProjectPreviewPopover>,
+    );
+    expect(screen.getByRole('button').className).toBe('custom-trigger');
+  });
+
   it('renders the tail after the card and pointing downward when placed above the trigger', async () => {
     const originalGetBoundingClientRect = HTMLElement.prototype.getBoundingClientRect;
     Object.defineProperty(window, 'innerHeight', { value: 800, configurable: true });

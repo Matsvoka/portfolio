@@ -1,4 +1,5 @@
 import type { ExperienceEntry } from '@/content/types';
+import { ProjectChip } from './project-chip';
 
 const LOGO_SIZE = 56;
 
@@ -32,6 +33,18 @@ export function ExperienceEntryRow({ entry }: { entry: ExperienceEntry }) {
         </div>
       </div>
       <p className="ml-[70px] mt-2 text-[12px] text-fg-muted">{entry.description}</p>
+      {entry.projectSlugs && entry.projectSlugs.length > 0 && (
+        <div className="ml-[70px] mt-2">
+          <p className="mb-1.5 font-mono text-[10px] uppercase tracking-wide text-fg-muted">
+            Projetos
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {entry.projectSlugs.map((slug) => (
+              <ProjectChip key={slug} slug={slug} />
+            ))}
+          </div>
+        </div>
+      )}
     </li>
   );
 }

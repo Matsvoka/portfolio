@@ -24,9 +24,11 @@ function PopoverTail({ placement }: { placement: PopoverPlacement }) {
 export function ProjectPreviewPopover({
   project,
   children,
+  triggerClassName = '',
 }: {
   project: Project;
   children: ReactNode;
+  triggerClassName?: string;
 }) {
   const [visible, setVisible] = useState(false);
   const [pinned, setPinned] = useState(false);
@@ -79,6 +81,7 @@ export function ProjectPreviewPopover({
           setVisible(true);
         }}
         aria-expanded={visible}
+        className={triggerClassName}
       >
         {children}
       </button>
