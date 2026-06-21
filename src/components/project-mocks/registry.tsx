@@ -1,0 +1,25 @@
+import dynamic from 'next/dynamic';
+import type { ComponentType } from 'react';
+
+function LoadingPlaceholder() {
+  return (
+    <div className="flex h-48 items-center justify-center rounded-md bg-bg-dim font-mono text-xs text-fg-muted">
+      carregando demo…
+    </div>
+  );
+}
+
+const MOCK_REGISTRY: Record<string, ComponentType> = {
+  doctag: dynamic(() => import('./doctag').then((mod) => mod.DoctagMock), {
+    ssr: false,
+    loading: LoadingPlaceholder,
+  }),
+  graphit: dynamic(() => import('./graphit').then((mod) => mod.GraphItMock), {
+    ssr: false,
+    loading: LoadingPlaceholder,
+  }),
+};
+
+export function getMockComponent(key: string): ComponentType | undefined {
+  return MOCK_REGISTRY[key];
+}
