@@ -16,7 +16,7 @@ export function Header() {
   const activeId = useActiveSection(NAV_ITEMS.map((item) => item.id));
 
   return (
-    <header className="sticky top-0 z-40 border-b border-bg-dim bg-bg px-4 py-3">
+    <header className="relative sticky top-0 z-40 border-b border-bg-dim bg-bg px-4 py-3">
       <div className="flex items-center justify-between">
         <a href="#sobre" className="font-bold tracking-tight text-fg">
           VM

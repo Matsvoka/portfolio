@@ -9,7 +9,7 @@ export function MobileNav({ items, activeId }: { items: NavItem[]; activeId: str
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative sm:hidden">
+    <div className="sm:hidden">
       <button
         type="button"
         onClick={() => setOpen((current) => !current)}
