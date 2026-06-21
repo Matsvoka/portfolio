@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from './theme-provider';
 import { ThemeToggle } from './theme-toggle';
@@ -31,13 +31,30 @@ describe('ThemeToggle', () => {
     expect(window.localStorage.getItem('theme')).toBe('light');
   });
 
-  it('reads a previously stored theme on mount', () => {
+  it('reads a previously stored theme on mount', async () => {
     window.localStorage.setItem('theme', 'light');
     render(
       <ThemeProvider>
         <ThemeToggle />
       </ThemeProvider>,
     );
-    expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false');
+    expect(await screen.findByRole('button')).toHaveAttribute('aria-pressed', 'false');
+  });
+
+  it('renders dark by default before correcting to a stored light theme after mount', async () => {
+    window.localStorage.setItem('theme', 'light');
+    render(
+      <ThemeProvider>
+        <ThemeToggle />
+      </ThemeProvider>,
+    );
+    // The initial render must be deterministic ('dark') regardless of localStorage,
+    // matching what the server would have rendered, to avoid a hydration mismatch.
+    // The mount-time effect then corrects it to the real stored value.
+    await waitFor(() => {
+      expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'false');
+    });
+    expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'Mudar para tema escuro');
+    expect(document.documentElement.classList.contains('dark')).toBe(false);
   });
 });
