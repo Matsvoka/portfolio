@@ -11,11 +11,9 @@ function LoadingPlaceholder() {
 
 const MOCK_REGISTRY: Record<string, ComponentType> = {
   doctag: dynamic(() => import('./doctag').then((mod) => mod.DoctagMock), {
-    ssr: false,
     loading: LoadingPlaceholder,
   }),
   graphit: dynamic(() => import('./graphit').then((mod) => mod.GraphItMock), {
-    ssr: false,
     loading: LoadingPlaceholder,
   }),
 };
