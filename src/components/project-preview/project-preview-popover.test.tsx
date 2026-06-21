@@ -88,8 +88,60 @@ describe('ProjectPreviewPopover', () => {
 
   it('renders a decorative tail pointing at the trigger when visible', async () => {
     const user = userEvent.setup();
+    renderPopover();
+    await user.hover(screen.getByRole('button'));
+    expect(screen.getByTestId('popover-tail')).toBeInTheDocument();
+  });
+
+  it('renders exactly one drop-shadow wrapper, not a duplicate on the card', async () => {
+    const user = userEvent.setup();
     const { container } = renderPopover();
     await user.hover(screen.getByRole('button'));
-    expect(container.querySelectorAll('[aria-hidden="true"]').length).toBeGreaterThan(0);
+    const shadowElements = Array.from(container.querySelectorAll('*')).filter((el) =>
+      el.className?.toString().includes('drop-shadow'),
+    );
+    expect(shadowElements).toHaveLength(1);
+    expect(screen.getByRole('link').className).not.toContain('drop-shadow');
+  });
+
+  it('renders the tail after the card and pointing downward when placed above the trigger', async () => {
+    const originalGetBoundingClientRect = HTMLElement.prototype.getBoundingClientRect;
+    Object.defineProperty(window, 'innerHeight', { value: 800, configurable: true });
+    HTMLElement.prototype.getBoundingClientRect = function (this: HTMLElement) {
+      if (this.tagName === 'BUTTON') {
+        return {
+          top: 700,
+          bottom: 720,
+          left: 0,
+          right: 0,
+          width: 0,
+          height: 20,
+          x: 0,
+          y: 700,
+          toJSON: () => {},
+        } as DOMRect;
+      }
+      return originalGetBoundingClientRect.call(this);
+    };
+
+    try {
+      const user = userEvent.setup();
+      renderPopover();
+      await user.hover(screen.getByRole('button'));
+
+      const tail = screen.getByTestId('popover-tail');
+      const link = screen.getByRole('link');
+
+      // placement === 'top' renders the downward-pointing triangle (border-t-bg)
+      expect(tail.className).toContain('border-t-bg');
+      expect(tail.className).not.toContain('border-b-bg');
+
+      // and the tail must come after the card in DOM order
+      expect(
+        link.compareDocumentPosition(tail) & Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+    } finally {
+      HTMLElement.prototype.getBoundingClientRect = originalGetBoundingClientRect;
+    }
   });
 });

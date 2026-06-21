@@ -8,11 +8,13 @@ import { usePopoverPlacement, type PopoverPlacement } from './use-popover-placem
 function PopoverTail({ placement }: { placement: PopoverPlacement }) {
   return placement === 'top' ? (
     <div
+      data-testid="popover-tail"
       aria-hidden="true"
       className="ml-6 h-0 w-0 border-x-[9px] border-t-[9px] border-x-transparent border-t-bg"
     />
   ) : (
     <div
+      data-testid="popover-tail"
       aria-hidden="true"
       className="ml-6 h-0 w-0 border-x-[9px] border-b-[9px] border-x-transparent border-b-bg"
     />
