@@ -49,3 +49,12 @@ export type EducationEntry = {
   institution: string;
   period: string;
 };
+
+export type Profile = {
+  name: string;
+  role: string;
+  email: string;
+  github: string;
+  linkedin: string;
+  resumeUrl: string;
+};
