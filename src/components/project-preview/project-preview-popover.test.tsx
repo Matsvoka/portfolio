@@ -85,4 +85,11 @@ describe('ProjectPreviewPopover', () => {
     await user.keyboard('{Escape}');
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
+
+  it('renders a decorative tail pointing at the trigger when visible', async () => {
+    const user = userEvent.setup();
+    const { container } = renderPopover();
+    await user.hover(screen.getByRole('button'));
+    expect(container.querySelectorAll('[aria-hidden="true"]').length).toBeGreaterThan(0);
+  });
 });
