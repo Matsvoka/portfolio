@@ -8,7 +8,7 @@ export function ProjectChip({ slug }: { slug: string }) {
   return (
     <ProjectPreviewPopover
       project={project}
-      triggerClassName="rounded bg-lime-soft px-2.5 py-1 text-[11px] text-lime-deep transition-colors hover:bg-lime-bright hover:text-ink dark:hover:text-coal motion-safe:transition-transform motion-safe:active:scale-95"
+      triggerClassName="cursor-pointer rounded bg-lime-bright px-2.5 py-1 text-[11px] text-ink transition-[color,background-color,transform] duration-150 hover:bg-lime active:bg-lime-deep active:text-bone motion-safe:active:scale-95 data-[pinned=true]:bg-lime-deep data-[pinned=true]:text-bone data-[pinned=true]:hover:bg-lime-deep dark:text-coal dark:active:text-bone dark:data-[pinned=true]:text-bone"
     >
       {project.title}
     </ProjectPreviewPopover>

@@ -52,6 +52,7 @@ describe('ProjectPreviewPopover', () => {
     await user.click(trigger);
     await user.unhover(trigger);
     expect(screen.getByRole('link')).toBeInTheDocument();
+    expect(trigger).toHaveAttribute('data-pinned', 'true');
   });
 
   it('keeps the card open if the trigger is clicked again while already pinned', async () => {

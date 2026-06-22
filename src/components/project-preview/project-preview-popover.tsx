@@ -81,6 +81,7 @@ export function ProjectPreviewPopover({
           setVisible(true);
         }}
         aria-expanded={visible}
+        data-pinned={pinned}
         className={triggerClassName}
       >
         {children}

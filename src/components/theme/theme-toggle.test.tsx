@@ -17,6 +17,7 @@ describe('ThemeToggle', () => {
       </ThemeProvider>,
     );
     expect(screen.getByRole('button')).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button')).toHaveClass('cursor-pointer', 'motion-safe:active:scale-90');
   });
 
   it('toggles to light theme on click and persists it', async () => {

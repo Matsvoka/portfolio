@@ -5,7 +5,14 @@ import { ProjectChip } from './project-chip';
 describe('ProjectChip', () => {
   it('renders the project title as the trigger label', () => {
     render(<ProjectChip slug="doctag" />);
-    expect(screen.getByRole('button', { name: 'Doctag' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Doctag' })).toHaveClass(
+      'cursor-pointer',
+      'bg-lime-bright',
+      'hover:bg-lime',
+      'active:bg-lime-deep',
+      'motion-safe:active:scale-95',
+      'data-[pinned=true]:bg-lime-deep',
+    );
   });
 
   it('renders nothing for an unknown slug', () => {
