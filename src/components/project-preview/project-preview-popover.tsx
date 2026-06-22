@@ -5,6 +5,8 @@ import type { Project } from '@/content/types';
 import { ProjectPreviewCard } from './project-preview-card';
 import { usePopoverPlacement, type PopoverPlacement } from './use-popover-placement';
 
+const CLOSE_DELAY_MS = 150;
+
 function PopoverTail({ placement }: { placement: PopoverPlacement }) {
   return placement === 'top' ? (
     <div
@@ -31,16 +33,15 @@ export function ProjectPreviewPopover({
   triggerClassName?: string;
 }) {
   const [visible, setVisible] = useState(false);
-  const [pinned, setPinned] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const placement = usePopoverPlacement(triggerRef, visible);
 
   useEffect(() => {
-    if (!pinned) return;
+    if (!visible) return;
 
     function dismiss() {
-      setPinned(false);
       setVisible(false);
     }
 
@@ -62,32 +63,56 @@ export function ProjectPreviewPopover({
       document.removeEventListener('pointerdown', handlePointerDown);
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [pinned]);
+  }, [visible]);
+
+  useEffect(
+    () => () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    },
+    [],
+  );
+
+  function showPreview() {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setVisible(true);
+  }
+
+  function schedulePreviewClose() {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = setTimeout(() => {
+      setVisible(false);
+      closeTimerRef.current = null;
+    }, CLOSE_DELAY_MS);
+  }
 
   return (
     <div
       ref={containerRef}
       className="relative inline-block"
-      onMouseEnter={() => setVisible(true)}
-      onMouseLeave={() => {
-        if (!pinned) setVisible(false);
+      onMouseEnter={showPreview}
+      onMouseLeave={schedulePreviewClose}
+      onFocusCapture={showPreview}
+      onBlurCapture={(event) => {
+        if (!containerRef.current?.contains(event.relatedTarget as Node | null)) {
+          schedulePreviewClose();
+        }
       }}
     >
       <button
         ref={triggerRef}
         type="button"
-        onClick={() => {
-          setPinned((current) => !current);
-          setVisible(true);
-        }}
+        onClick={showPreview}
         aria-expanded={visible}
-        data-pinned={pinned}
         className={triggerClassName}
       >
         {children}
       </button>
       {visible && (
         <div
+          onMouseEnter={showPreview}
           className={`absolute left-0 z-50 w-60 [filter:drop-shadow(0_3px_10px_rgba(18,21,15,0.22))] dark:[filter:drop-shadow(0_3px_10px_rgba(0,0,0,0.45))] ${
             placement === 'top' ? 'bottom-full mb-2.5' : 'top-full mt-2.5'
           }`}
