@@ -4,7 +4,8 @@ import { profile } from '@/content/profile';
 
 export function Footer() {
   return (
-    <footer className="flex flex-col items-center gap-4 border-t border-bg-dim px-4 py-10 text-center">
+    <footer className="border-t border-bg-dim bg-bg px-4 py-10 text-center">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-4">
       <a
         href={profile.resumeUrl}
         download
@@ -43,6 +44,7 @@ export function Footer() {
       <p className="font-mono text-[10px] text-fg-muted">
         © {new Date().getFullYear()} {profile.name}
       </p>
+      </div>
     </footer>
   );
 }

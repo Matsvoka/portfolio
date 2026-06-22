@@ -16,9 +16,10 @@ describe('Header', () => {
     renderHeader();
     expect(screen.getByRole('link', { name: 'Sobre' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Experiência' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Projetos' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Skills' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Formação' })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Projetos' })).toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Skills' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('link', { name: 'Idiomas' })).not.toBeInTheDocument();
   });
 
   it('marks the first section as active by default', () => {

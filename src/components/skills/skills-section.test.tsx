@@ -18,4 +18,19 @@ describe('SkillsSection', () => {
       }
     }
   });
+
+  it('uses the primary section and experience-role typography', () => {
+    render(<SkillsSection />);
+
+    expect(screen.getByRole('heading', { name: 'Skills' })).toHaveClass(
+      'text-2xl',
+      'font-bold',
+    );
+    expect(screen.getByText(skills[0].category)).toHaveClass(
+      'text-[17px]',
+      'font-bold',
+      'leading-tight',
+      'tracking-tight',
+    );
+  });
 });

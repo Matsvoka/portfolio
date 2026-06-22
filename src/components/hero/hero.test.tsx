@@ -6,7 +6,7 @@ import { profile } from '@/content/profile';
 describe('Hero', () => {
   it('renders the name and role', () => {
     render(<Hero />);
-    expect(screen.getByRole('heading', { level: 1, name: profile.name })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 1, name: profile.name })).toHaveClass('mt-6');
     expect(screen.getByText(profile.role)).toBeInTheDocument();
   });
 
@@ -21,10 +21,5 @@ describe('Hero', () => {
       'href',
       profile.linkedin,
     );
-  });
-
-  it('renders inside a #sobre section landmark', () => {
-    render(<Hero />);
-    expect(document.getElementById('sobre')).toBeInTheDocument();
   });
 });

@@ -7,17 +7,22 @@ import { MobileNav } from './mobile-nav';
 export const NAV_ITEMS = [
   { id: 'sobre', label: 'Sobre' },
   { id: 'experiencia', label: 'Experiência' },
-  { id: 'projetos', label: 'Projetos' },
-  { id: 'skills', label: 'Skills' },
   { id: 'formacao', label: 'Formação' },
+  { id: 'projetos', label: 'Projetos' },
 ];
 
+const NAV_SECTION_IDS = NAV_ITEMS.map((item) => item.id);
+const NAV_SECTION_ALIASES = {
+  skills: 'experiencia',
+  idiomas: 'formacao',
+};
+
 export function Header() {
-  const activeId = useActiveSection(NAV_ITEMS.map((item) => item.id));
+  const activeId = useActiveSection(NAV_SECTION_IDS, NAV_SECTION_ALIASES);
 
   return (
     <header className="relative sticky top-0 z-40 border-b border-bg-dim bg-bg px-4 py-3">
-      <div className="flex items-center justify-between">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
         <a href="#sobre" className="font-bold tracking-tight text-fg">
           VM
         </a>

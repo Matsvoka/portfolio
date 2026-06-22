@@ -21,6 +21,22 @@ const pastEntry: ExperienceEntry = {
 };
 
 describe('ExperienceEntryRow', () => {
+  it('draws the timeline connector only from this dot toward the next one', () => {
+    const { container } = render(
+      <ul>
+        <ExperienceEntryRow entry={currentEntry} />
+      </ul>,
+    );
+    const row = container.querySelector('li');
+
+    expect(row).not.toHaveClass('border-l-2');
+    expect(row).toHaveClass(
+      'after:top-[33px]',
+      'after:-bottom-[33px]',
+      'last:after:hidden',
+    );
+  });
+
   it('renders role, company, period, and description', () => {
     render(
       <ul>

@@ -11,4 +11,9 @@ export const education: EducationEntry[] = [
     institution: 'Escola Y',
     period: '2013 — 2015',
   },
+  {
+    degree: 'Língua Inglesa',
+    institution: 'Escola de Idiomas',
+    period: '2010 — 2014',
+  },
 ];

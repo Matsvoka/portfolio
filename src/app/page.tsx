@@ -1,17 +1,23 @@
 import { Header } from '@/components/layout/header';
 import { Hero } from '@/components/hero/hero';
-import { ExperienceSection } from '@/components/experience/experience-section';
-import { ProjectsSkillsGrid } from '@/components/home/projects-skills-grid';
+import { AboutSection } from '@/components/about/about-section';
+import { ExperienceSkillsGrid } from '@/components/home/experience-skills-grid';
+import { ProjectsSection } from '@/components/projects/projects-section';
 import { Footer } from '@/components/footer/footer';
 
 export default function Page() {
   return (
     <>
       <Header />
-      <main>
-        <Hero />
-        <ExperienceSection />
-        <ProjectsSkillsGrid />
+      <main className="bg-bg-dim">
+        <div className="mx-auto w-full max-w-6xl">
+          <Hero />
+          <AboutSection />
+          <ExperienceSkillsGrid />
+          <div className="px-4 py-12">
+            <ProjectsSection />
+          </div>
+        </div>
       </main>
       <Footer />
     </>

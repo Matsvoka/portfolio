@@ -16,4 +16,20 @@ export const skills: SkillCategory[] = [
       { name: 'Docker', icon: 'Container' },
     ],
   },
+  {
+    category: 'Qualidade & Testes',
+    items: [
+      { name: 'Vitest', icon: 'FlaskConical' },
+      { name: 'Testing Library', icon: 'TestTube2' },
+      { name: 'Playwright', icon: 'ScanSearch' },
+    ],
+  },
+  {
+    category: 'Cloud & DevOps',
+    items: [
+      { name: 'AWS', icon: 'Cloud' },
+      { name: 'GitHub Actions', icon: 'Workflow' },
+      { name: 'Linux', icon: 'Terminal' },
+    ],
+  },
 ];
