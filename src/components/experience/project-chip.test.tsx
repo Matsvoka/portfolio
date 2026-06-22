@@ -11,6 +11,7 @@ describe('ProjectChip', () => {
       'hover:bg-lime',
       'active:bg-lime-deep',
       'active:scale-90',
+      'data-[pinned=true]:bg-lime-deep',
     );
   });
 

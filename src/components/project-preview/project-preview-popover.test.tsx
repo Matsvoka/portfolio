@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ProjectPreviewPopover } from './project-preview-popover';
 import type { Project } from '@/content/types';
@@ -42,30 +42,31 @@ describe('ProjectPreviewPopover', () => {
     const trigger = screen.getByRole('button');
     await user.hover(trigger);
     await user.unhover(trigger);
-    await waitFor(() => expect(screen.queryByRole('link')).not.toBeInTheDocument());
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
-  it('does not pin the card after a click', async () => {
+  it('persists the card after a click, even after unhover', async () => {
     const user = userEvent.setup();
     renderPopover();
     const trigger = screen.getByRole('button');
     await user.click(trigger);
     await user.unhover(trigger);
-    await waitFor(() => expect(screen.queryByRole('link')).not.toBeInTheDocument());
+    expect(screen.getByRole('link')).toBeInTheDocument();
+    expect(trigger).toHaveAttribute('data-pinned', 'true');
   });
 
-  it('keeps the card open while moving from the trigger into the card', async () => {
+  it('unpins the card when the trigger is clicked again', async () => {
     const user = userEvent.setup();
     renderPopover();
     const trigger = screen.getByRole('button');
-    await user.hover(trigger);
-    const card = screen.getByRole('link');
-    await user.hover(card);
-    await new Promise((resolve) => setTimeout(resolve, 200));
-    expect(card).toBeInTheDocument();
+    await user.click(trigger);
+    await user.click(trigger);
+    expect(trigger).toHaveAttribute('data-pinned', 'false');
+    await user.unhover(trigger);
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
-  it('dismisses an open card on outside click', async () => {
+  it('dismisses a pinned card on outside click', async () => {
     const user = userEvent.setup();
     render(
       <div>
@@ -80,7 +81,7 @@ describe('ProjectPreviewPopover', () => {
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
-  it('dismisses an open card on Escape', async () => {
+  it('dismisses a pinned card on Escape', async () => {
     const user = userEvent.setup();
     renderPopover();
     await user.click(screen.getByRole('button'));
