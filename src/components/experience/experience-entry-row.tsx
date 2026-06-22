@@ -1,7 +1,6 @@
 import type { ExperienceEntry } from '@/content/types';
+import { EntryLogoPlaceholder } from '@/components/shared/entry-logo-placeholder';
 import { ProjectChip } from './project-chip';
-
-const LOGO_SIZE = 56;
 
 export function ExperienceEntryRow({ entry }: { entry: ExperienceEntry }) {
   return (
@@ -13,13 +12,7 @@ export function ExperienceEntryRow({ entry }: { entry: ExperienceEntry }) {
         }`}
       />
       <div className="flex gap-3.5">
-        <div
-          aria-hidden="true"
-          className="flex shrink-0 items-center justify-center rounded-lg bg-bg-dim font-mono text-[9px] text-fg-muted"
-          style={{ width: LOGO_SIZE, height: LOGO_SIZE }}
-        >
-          logo
-        </div>
+        <EntryLogoPlaceholder />
         <div>
           <p
             className={`text-[17px] font-bold leading-tight tracking-tight ${

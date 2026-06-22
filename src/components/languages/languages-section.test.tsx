@@ -13,5 +13,6 @@ describe('LanguagesSection', () => {
       expect(screen.getByText(language.name)).toBeInTheDocument();
       expect(screen.getByText(language.proficiency)).toBeInTheDocument();
     }
+    expect(screen.getAllByText('ícone')).toHaveLength(languages.length);
   });
 });
