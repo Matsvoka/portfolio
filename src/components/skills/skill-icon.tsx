@@ -28,7 +28,7 @@ const ICONS: Record<string, LucideIcon> = {
   Terminal,
 };
 
-export function SkillIcon({ name, size = 11 }: { name: string; size?: number }) {
+export function SkillIcon({ name, size = 14 }: { name: string; size?: number }) {
   const Icon = ICONS[name] ?? Code2;
   return <Icon size={size} aria-hidden="true" />;
 }
