@@ -5,19 +5,6 @@ import { getVisibleTags } from './tag-overflow';
 
 const MAX_VISIBLE_TAGS = 2;
 
-function previewLabel(demo: Project['demo']): string {
-  switch (demo.type) {
-    case 'mock':
-      return 'preview (demo interativo)';
-    case 'video':
-      return 'preview (vídeo)';
-    case 'gif':
-      return 'preview (gif)';
-    case 'none':
-      return 'sem preview';
-  }
-}
-
 export function ProjectPreviewCard({
   project,
   elevated = true,
@@ -44,9 +31,17 @@ export function ProjectPreviewCard({
           className="mt-0.5 shrink-0 text-fg-muted transition-colors group-hover:text-lime-deep dark:group-hover:text-lime-bright"
         />
       </div>
-      <div className="mt-2 flex h-20 items-center justify-center rounded-md bg-bg-dim font-mono text-[10px] text-fg-muted">
-        {previewLabel(project.demo)}
-      </div>
+      <video
+        aria-label={`Preview em vídeo do projeto ${project.title}`}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="mt-2 h-20 w-full rounded-md bg-bg-dim object-cover"
+      >
+        <source src={project.previewVideo} type="video/mp4" />
+      </video>
       <p className="mt-2 text-[11px] leading-snug text-fg-muted">{project.oneLiner}</p>
       <div className="mt-2 flex items-center gap-1.5 whitespace-nowrap font-mono text-[10px] text-lime-deep dark:text-lime-bright">
         {visible.map((tag, index) => (

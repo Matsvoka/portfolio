@@ -15,9 +15,12 @@ export type Project = {
   oneLiner: string;
   tags: string[];
   role: string;
+  /** Silent looping video used exclusively by preview cards on the home page. */
+  previewVideo: string;
   narrative: string[];
   /** How many narrative paragraphs render before the demo slot. 0 = demo right after the header. */
   demoIndex: number;
+  /** Rich demo rendered exclusively on the project detail page. */
   demo: ProjectDemo;
   links?: ProjectLinks;
 };

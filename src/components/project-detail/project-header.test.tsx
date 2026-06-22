@@ -9,6 +9,7 @@ const project: Project = {
   oneLiner: 'App desktop de tagging de documentos.',
   tags: ['Electron', 'React'],
   role: 'Criador',
+  previewVideo: '/videos/doctag-preview.mp4',
   narrative: [],
   demoIndex: 0,
   demo: { type: 'none' },

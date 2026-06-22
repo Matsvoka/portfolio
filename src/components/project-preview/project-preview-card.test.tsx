@@ -9,6 +9,7 @@ const project: Project = {
   oneLiner: 'App desktop de tagging de documentos.',
   tags: ['Electron', 'React', 'PostgreSQL', 'Docker'],
   role: 'Criador',
+  previewVideo: '/videos/doctag-preview.mp4',
   narrative: ['Parágrafo 1.'],
   demoIndex: 0,
   demo: { type: 'mock', component: 'doctag' },
@@ -34,9 +35,15 @@ describe('ProjectPreviewCard', () => {
     expect(screen.getByText('+2')).toBeInTheDocument();
   });
 
-  it('shows a preview placeholder describing the demo type', () => {
-    render(<ProjectPreviewCard project={project} />);
-    expect(screen.getByText('preview (demo interativo)')).toBeInTheDocument();
+  it('always renders the dedicated preview video, independently of the detail demo', () => {
+    const { container } = render(<ProjectPreviewCard project={project} />);
+    const video = screen.getByLabelText('Preview em vídeo do projeto Doctag');
+    const source = container.querySelector('video source');
+
+    expect(video).toHaveAttribute('autoplay');
+    expect(video).toHaveAttribute('loop');
+    expect(source).toHaveAttribute('src', project.previewVideo);
+    expect(project.demo.type).toBe('mock');
   });
 
   it('applies its own elevation shadow by default', () => {
