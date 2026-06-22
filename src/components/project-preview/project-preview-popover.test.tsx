@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { beforeEach, describe, it, expect, vi } from 'vitest';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ProjectPreviewPopover } from './project-preview-popover';
 import type { Project } from '@/content/types';
@@ -16,6 +16,14 @@ const project: Project = {
   demo: { type: 'mock', component: 'doctag' },
 };
 
+const secondProject: Project = {
+  ...project,
+  slug: 'graphit',
+  title: 'GraphIt',
+  oneLiner: 'Ferramenta de grafos e visualização.',
+  previewVideo: '/videos/graphit-preview.mp4',
+};
+
 function renderPopover() {
   return render(
     <ProjectPreviewPopover project={project}>
@@ -23,6 +31,15 @@ function renderPopover() {
     </ProjectPreviewPopover>,
   );
 }
+
+function setHoverCapability(matches: boolean) {
+  Object.defineProperty(window, 'matchMedia', {
+    configurable: true,
+    value: vi.fn().mockReturnValue({ matches }),
+  });
+}
+
+beforeEach(() => setHoverCapability(false));
 
 describe('ProjectPreviewPopover', () => {
   it('hides the card by default', () => {
@@ -43,7 +60,7 @@ describe('ProjectPreviewPopover', () => {
     const trigger = screen.getByRole('button');
     await user.hover(trigger);
     await user.unhover(trigger);
-    expect(screen.queryByRole('link')).not.toBeInTheDocument();
+    await waitFor(() => expect(screen.queryByRole('link')).not.toBeInTheDocument());
   });
 
   it('persists the card after a click, even after unhover', async () => {
@@ -63,8 +80,57 @@ describe('ProjectPreviewPopover', () => {
     await user.click(trigger);
     await user.click(trigger);
     expect(trigger).toHaveAttribute('data-pinned', 'false');
-    await user.unhover(trigger);
     expect(screen.queryByRole('link')).not.toBeInTheDocument();
+  });
+
+  it('uses hover only on desktop and keeps the chip active while the card is hovered', async () => {
+    setHoverCapability(true);
+    const user = userEvent.setup();
+    renderPopover();
+    const trigger = screen.getByRole('button');
+
+    await user.hover(trigger);
+    const card = screen.getByRole('link');
+    expect(trigger).toHaveAttribute('data-preview-active', 'true');
+    expect(trigger).toHaveAttribute('data-pinned', 'false');
+
+    await user.hover(card);
+    await new Promise((resolve) => setTimeout(resolve, 200));
+    expect(card).toBeInTheDocument();
+    expect(trigger).toHaveAttribute('data-preview-active', 'true');
+
+    await user.unhover(card);
+    await waitFor(() => expect(screen.queryByRole('link')).not.toBeInTheDocument());
+    expect(trigger).toHaveAttribute('data-preview-active', 'false');
+  });
+
+  it('does not open or pin the preview from a desktop click alone', () => {
+    setHoverCapability(true);
+    renderPopover();
+    const trigger = screen.getByRole('button');
+
+    fireEvent.click(trigger);
+    expect(trigger).toHaveAttribute('data-pinned', 'false');
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
+  });
+
+  it('closes the previous preview immediately when another chip opens', async () => {
+    setHoverCapability(true);
+    const user = userEvent.setup();
+    render(
+      <div>
+        <ProjectPreviewPopover project={project}>Doctag</ProjectPreviewPopover>
+        <ProjectPreviewPopover project={secondProject}>GraphIt</ProjectPreviewPopover>
+      </div>,
+    );
+
+    await user.hover(screen.getByRole('button', { name: 'Doctag' }));
+    expect(screen.getByText(project.oneLiner)).toBeInTheDocument();
+
+    await user.hover(screen.getByRole('button', { name: 'GraphIt' }));
+    expect(screen.queryByText(project.oneLiner)).not.toBeInTheDocument();
+    expect(screen.getByText(secondProject.oneLiner)).toBeInTheDocument();
+    expect(screen.getAllByRole('link')).toHaveLength(1);
   });
 
   it('dismisses a pinned card on outside click', async () => {

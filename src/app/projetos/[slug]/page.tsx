@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { ArrowLeft } from 'lucide-react';
 import { projects } from '@/content/projects';
 import { getProjectBySlug } from '@/lib/projects';
 import { splitNarrativeAtDemoIndex } from '@/lib/narrative';
@@ -21,6 +23,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-12">
+      <Link
+        href="/"
+        className="mb-8 inline-flex cursor-pointer items-center gap-1.5 text-sm font-semibold text-fg-muted transition-[color,transform] duration-150 hover:text-lime-deep active:scale-95 dark:hover:text-lime-bright"
+      >
+        <ArrowLeft size={16} aria-hidden="true" />
+        <span>Voltar</span>
+      </Link>
       <ProjectHeader project={project} />
       {before.map((paragraph, index) => (
         <p key={index} className="mb-4 text-sm text-fg-muted">

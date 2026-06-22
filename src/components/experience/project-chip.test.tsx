@@ -11,7 +11,12 @@ describe('ProjectChip', () => {
       'hover:bg-lime',
       'active:bg-lime-deep',
       'active:scale-90',
-      'data-[pinned=true]:bg-lime-deep',
+      'sm:active:scale-100',
+      'sm:cursor-default',
+      'data-[preview-active=true]:bg-lime',
+      'data-[pinned=true]:bg-lime',
+      'data-[pinned=true]:text-ink',
+      'dark:data-[pinned=true]:text-coal',
     );
   });
 

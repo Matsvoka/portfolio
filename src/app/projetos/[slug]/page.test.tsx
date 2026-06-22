@@ -26,6 +26,16 @@ describe('ProjectPage', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Doctag' })).toBeInTheDocument();
   });
 
+  it('provides navigation back to the portfolio home', async () => {
+    const jsx = await ProjectPage({ params: Promise.resolve({ slug: 'doctag' }) });
+    render(jsx);
+
+    const link = screen.getByRole('link', { name: 'Voltar' });
+
+    expect(link).toHaveAttribute('href', '/');
+    expect(link).not.toHaveClass('bg-bg-dim', 'rounded-md');
+  });
+
   it('renders narrative paragraphs before the demo when demoIndex is 0', async () => {
     const jsx = await ProjectPage({ params: Promise.resolve({ slug: 'doctag' }) });
     const { container } = render(jsx);

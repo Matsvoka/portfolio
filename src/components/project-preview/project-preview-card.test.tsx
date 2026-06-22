@@ -22,9 +22,14 @@ describe('ProjectPreviewCard', () => {
     expect(screen.getByText(project.oneLiner)).toBeInTheDocument();
   });
 
-  it('links to the project detail page as a single whole-card link', () => {
+  it('links to the project detail page only through the Ver control', () => {
     render(<ProjectPreviewCard project={project} />);
-    expect(screen.getByRole('link')).toHaveAttribute('href', '/projetos/doctag');
+    const link = screen.getByRole('link', { name: 'Ver detalhes do projeto Doctag' });
+
+    expect(screen.getByTestId('project-preview-card').tagName).toBe('ARTICLE');
+    expect(link).toHaveAttribute('href', '/projetos/doctag');
+    expect(link).toHaveTextContent('Ver');
+    expect(link).toHaveClass('active:scale-90');
   });
 
   it('shows only the first two tags plus an overflow count', () => {
@@ -48,11 +53,11 @@ describe('ProjectPreviewCard', () => {
 
   it('applies its own elevation shadow by default', () => {
     render(<ProjectPreviewCard project={project} />);
-    expect(screen.getByRole('link').className).toContain('drop-shadow');
+    expect(screen.getByTestId('project-preview-card').className).toContain('drop-shadow');
   });
 
   it('omits its own shadow when elevated=false (popover supplies one shadow for card+tail)', () => {
     render(<ProjectPreviewCard project={project} elevated={false} />);
-    expect(screen.getByRole('link').className).not.toContain('drop-shadow');
+    expect(screen.getByTestId('project-preview-card').className).not.toContain('drop-shadow');
   });
 });
