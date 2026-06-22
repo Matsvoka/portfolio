@@ -12,13 +12,13 @@ export function EducationSection() {
           <li key={`${entry.institution}-${entry.period}`} className="flex gap-3.5">
             <EntryLogoPlaceholder />
             <div>
-              <p className="text-[17px] font-bold leading-tight tracking-tight text-fg">
+              <p className="text-[22px] font-bold leading-tight tracking-tight text-fg">
                 {entry.degree}
               </p>
-              <p className="mt-0.5 text-sm font-semibold leading-tight text-fg-muted">
+              <p className="mt-0.5 text-base font-semibold leading-tight text-fg-muted">
                 {entry.institution}
               </p>
-              <p className="mt-0.5 font-mono text-[11px] leading-tight text-fg-muted">
+              <p className="mt-0.5 font-mono text-sm leading-tight text-fg-muted">
                 {entry.period}
               </p>
             </div>

@@ -25,12 +25,12 @@ describe('EducationSection', () => {
     const entry = education[0];
 
     expect(screen.getByRole('heading', { name: 'Formação' })).toHaveClass(
-      'text-2xl',
+      'text-3xl',
       'font-bold',
     );
-    expect(screen.getByText(entry.degree)).toHaveClass('text-[17px]', 'font-bold');
-    expect(screen.getByText(entry.institution)).toHaveClass('text-sm', 'font-semibold');
-    expect(screen.getByText(entry.period)).toHaveClass('font-mono', 'text-[11px]');
+    expect(screen.getByText(entry.degree)).toHaveClass('text-[22px]', 'font-bold');
+    expect(screen.getByText(entry.institution)).toHaveClass('text-base', 'font-semibold');
+    expect(screen.getByText(entry.period)).toHaveClass('font-mono', 'text-sm');
   });
 
   it('renders Língua Inglesa below Técnico em Informática', () => {
