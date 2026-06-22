@@ -15,6 +15,9 @@ describe('generateStaticParams', () => {
       { slug: 'doctag' },
       { slug: 'graphit' },
       { slug: 'hcp-app' },
+      { slug: 'valentines' },
+      { slug: 'cablagem' },
+      { slug: 'cotacao' },
     ]);
   });
 });

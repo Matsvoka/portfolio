@@ -1,9 +1,28 @@
+'use client';
+
 import Link from 'next/link';
 import { ArrowRight, Code2 } from 'lucide-react';
 import type { Project } from '@/content/types';
-import { getVisibleTags } from './tag-overflow';
+import { useTagFit } from './use-tag-fit';
 
-const MAX_VISIBLE_TAGS = 2;
+function TagBlock({ tag, showDot }: { tag: string; showDot: boolean }) {
+  return (
+    <span className="flex items-center gap-1">
+      {showDot && <span className="text-fg-muted">·</span>}
+      <Code2 size={10} aria-hidden="true" />
+      <span>{tag}</span>
+    </span>
+  );
+}
+
+function OverflowBadge({ count }: { count: number }) {
+  return (
+    <span className="flex items-center gap-1">
+      <span className="text-fg-muted">·</span>
+      <span className="text-fg-muted">+{count}</span>
+    </span>
+  );
+}
 
 export function ProjectPreviewCard({
   project,
@@ -12,7 +31,9 @@ export function ProjectPreviewCard({
   project: Project;
   elevated?: boolean;
 }) {
-  const { visible, overflowCount } = getVisibleTags(project.tags, MAX_VISIBLE_TAGS);
+  const { rowRef, mirrorRef, fit } = useTagFit(project.tags);
+  const visible = project.tags.slice(0, fit.visibleCount);
+  const overflowCount = fit.overflowCount;
 
   return (
     <article
@@ -46,20 +67,25 @@ export function ProjectPreviewCard({
         <source src={project.previewVideo} type="video/mp4" />
       </video>
       <p className="mt-2 text-[11px] leading-snug text-fg-muted">{project.oneLiner}</p>
-      <div className="mt-2 flex items-center gap-1.5 whitespace-nowrap font-mono text-[10px] text-lime-deep dark:text-lime-bright">
+      <div
+        ref={rowRef}
+        data-testid="tag-row"
+        className="mt-2 flex items-center gap-1.5 whitespace-nowrap font-mono text-[10px] text-lime-deep dark:text-lime-bright"
+      >
         {visible.map((tag, index) => (
-          <span key={tag} className="flex items-center gap-1">
-            {index > 0 && <span className="text-fg-muted">·</span>}
-            <Code2 size={10} aria-hidden="true" />
-            <span>{tag}</span>
-          </span>
+          <TagBlock key={tag} tag={tag} showDot={index > 0} />
         ))}
-        {overflowCount > 0 && (
-          <span className="flex items-center gap-1">
-            <span className="text-fg-muted">·</span>
-            <span className="text-fg-muted">+{overflowCount}</span>
-          </span>
-        )}
+        {overflowCount > 0 && <OverflowBadge count={overflowCount} />}
+      </div>
+      <div
+        ref={mirrorRef}
+        aria-hidden="true"
+        className="flex h-0 items-center gap-1.5 overflow-hidden font-mono text-[10px]"
+      >
+        {project.tags.map((tag, index) => (
+          <TagBlock key={tag} tag={tag} showDot={index > 0} />
+        ))}
+        <OverflowBadge count={project.tags.length} />
       </div>
     </article>
   );

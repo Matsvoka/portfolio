@@ -63,7 +63,7 @@ export const projects: Project[] = [
   {
     slug: 'cablagem',
     title: 'Cablagem',
-    oneLiner: 'Automação de planilha para contagem de materiais e geração de documentos de chicotes. [placeholder]',
+    oneLiner: 'Automação para contagem de materiais e orçamento de chicotes. [placeholder]',
     tags: ['Google Apps Script', 'Google Sheets'],
     role: 'Engenheiro de software',
     previewVideo: '/videos/cablagem-placeholder.mp4',
