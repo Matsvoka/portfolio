@@ -36,7 +36,7 @@ export function Header() {
         <a href="#sobre" className="font-bold tracking-tight text-fg">
           VM
         </a>
-        <nav aria-label="Navegação principal" className="hidden gap-4 text-sm sm:flex">
+        <nav aria-label="Navegação principal" className="hidden gap-4 text-base sm:flex">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.id}
@@ -55,7 +55,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <span
-            className="rounded border border-fg-muted px-1.5 py-0.5 font-mono text-[11px] text-fg-muted"
+            className="rounded border border-fg-muted px-1.5 py-0.5 font-mono text-sm text-fg-muted"
             aria-label="Idioma: Português (Brasil). Seletor de idioma ainda não implementado."
           >
             PT-BR ⌄
