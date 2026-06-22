@@ -1,9 +1,11 @@
+import { Languages as LanguagesIcon } from 'lucide-react';
+import { SectionTitle } from '@/components/shared/section-title';
 import { languages } from '@/content/languages';
 
 export function LanguagesSection() {
   return (
     <section id="idiomas" className="scroll-mt-16">
-      <h2 className="mb-6 text-2xl font-bold text-fg">Idiomas</h2>
+      <SectionTitle icon={LanguagesIcon}>Idiomas</SectionTitle>
       <ul className="flex flex-col gap-6">
         {languages.map((language) => (
           <li key={language.name}>

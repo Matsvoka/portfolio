@@ -40,23 +40,22 @@ describe('useActiveSection', () => {
     expect(result.current).toBe('experiencia');
   });
 
-  it('maps related sidebar sections to their primary navigation section', () => {
-    const sectionIds = ['sobre', 'experiencia', 'formacao'];
-    const aliases = { skills: 'experiencia', idiomas: 'formacao' };
-    const { result } = renderHook(() => useActiveSection(sectionIds, aliases));
+  it('tracks Skills and Idiomas as independent sections', () => {
+    const sectionIds = ['sobre', 'experiencia', 'skills', 'formacao', 'idiomas'];
+    const { result } = renderHook(() => useActiveSection(sectionIds));
 
     act(() => {
       observedCallback?.([
         { isIntersecting: true, target: document.getElementById('skills')! },
       ]);
     });
-    expect(result.current).toBe('experiencia');
+    expect(result.current).toBe('skills');
 
     act(() => {
       observedCallback?.([
         { isIntersecting: true, target: document.getElementById('idiomas')! },
       ]);
     });
-    expect(result.current).toBe('formacao');
+    expect(result.current).toBe('idiomas');
   });
 });

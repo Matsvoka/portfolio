@@ -21,6 +21,7 @@ describe('Home page', () => {
       'max-w-6xl',
     );
     expect(document.getElementById('sobre')).toBeInTheDocument();
+    expect(document.getElementById('sobre')?.parentElement).toBe(screen.getByRole('main'));
     expect(document.getElementById('experiencia')).toBeInTheDocument();
     expect(document.getElementById('projetos')).toBeInTheDocument();
     expect(document.getElementById('skills')).toBeInTheDocument();

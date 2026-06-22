@@ -2,17 +2,11 @@
 
 import { useEffect, useState } from 'react';
 
-const EMPTY_SECTION_ALIASES: Record<string, string> = {};
-
-export function useActiveSection(
-  sectionIds: string[],
-  sectionAliases: Record<string, string> = EMPTY_SECTION_ALIASES,
-): string {
+export function useActiveSection(sectionIds: string[]): string {
   const [activeId, setActiveId] = useState(sectionIds[0]);
 
   useEffect(() => {
-    const observedIds = [...sectionIds, ...Object.keys(sectionAliases)];
-    const elements = observedIds
+    const elements = sectionIds
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
 
@@ -22,8 +16,7 @@ export function useActiveSection(
       (entries) => {
         const visible = entries.filter((entry) => entry.isIntersecting);
         if (visible.length > 0) {
-          const observedId = visible[0].target.id;
-          setActiveId(sectionAliases[observedId] ?? observedId);
+          setActiveId(visible[0].target.id);
         }
       },
       { rootMargin: '-40% 0px -50% 0px' },
@@ -31,7 +24,7 @@ export function useActiveSection(
 
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [sectionAliases, sectionIds]);
+  }, [sectionIds]);
 
   return activeId;
 }

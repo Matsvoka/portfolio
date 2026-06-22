@@ -1,10 +1,12 @@
+import { Wrench } from 'lucide-react';
+import { SectionTitle } from '@/components/shared/section-title';
 import { skills } from '@/content/skills';
 import { SkillIcon } from './skill-icon';
 
 export function SkillsSection() {
   return (
-    <section id="skills">
-      <h2 className="mb-6 text-2xl font-bold text-fg">Skills</h2>
+    <section id="skills" className="scroll-mt-16">
+      <SectionTitle icon={Wrench}>Skills</SectionTitle>
       {skills.map((category) => (
         <div key={category.category} className="mb-6 last:mb-0">
           <p className="mb-2 text-[17px] font-bold leading-tight tracking-tight text-fg">

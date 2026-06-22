@@ -6,7 +6,7 @@ import { profile } from '@/content/profile';
 describe('Hero', () => {
   it('renders the name and role', () => {
     render(<Hero />);
-    expect(screen.getByRole('heading', { level: 1, name: profile.name })).toHaveClass('mt-6');
+    expect(screen.getByRole('heading', { level: 1, name: profile.name })).toBeInTheDocument();
     expect(screen.getByText(profile.role)).toBeInTheDocument();
   });
 

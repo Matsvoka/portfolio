@@ -8,6 +8,12 @@ describe('AboutSection', () => {
     const { container } = render(<AboutSection />);
 
     expect(document.getElementById('sobre')).toBeInTheDocument();
+    expect(document.getElementById('sobre')).toHaveClass('w-full', 'bg-bg');
+    expect(document.getElementById('sobre')).not.toHaveClass('sm:rounded-xl');
+    expect(document.getElementById('sobre')?.firstElementChild).toHaveClass(
+      'mx-auto',
+      'max-w-6xl',
+    );
     expect(screen.getByRole('heading', { name: 'Sobre mim' })).toBeInTheDocument();
     expect(container.querySelectorAll('p')).toHaveLength(2);
     for (const paragraph of aboutParagraphs) {

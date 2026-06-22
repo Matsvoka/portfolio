@@ -12,7 +12,9 @@ export default function Page() {
       <main className="bg-bg-dim">
         <div className="mx-auto w-full max-w-6xl">
           <Hero />
-          <AboutSection />
+        </div>
+        <AboutSection />
+        <div className="mx-auto w-full max-w-6xl">
           <ExperienceSkillsGrid />
           <div className="px-4 py-12">
             <ProjectsSection />
