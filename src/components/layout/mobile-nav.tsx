@@ -18,13 +18,13 @@ export function MobileNav({ items, activeId }: { items: NavItem[]; activeId: str
         aria-label={open ? 'Fechar menu' : 'Abrir menu'}
         className="p-1.5 text-fg"
       >
-        {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+        {open ? <X size={23} aria-hidden="true" /> : <Menu size={23} aria-hidden="true" />}
       </button>
       {open && (
         <nav
           id="mobile-nav-panel"
           aria-label="Navegação principal"
-          className="absolute left-0 top-full flex w-full flex-col gap-1 border-b border-bg-dim bg-bg px-4 py-3 text-sm"
+          className="absolute left-0 top-full flex w-full flex-col gap-1 border-b border-bg-dim bg-bg px-4 py-3 text-[15px]"
         >
           {items.map((item) => (
             <a

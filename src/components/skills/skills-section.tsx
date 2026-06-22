@@ -9,14 +9,14 @@ export function SkillsSection() {
       <SectionTitle icon={Wrench}>Skills</SectionTitle>
       {skills.map((category) => (
         <div key={category.category} className="mb-6 last:mb-0">
-          <p className="mb-2 text-[17px] font-bold leading-tight tracking-tight text-fg">
+          <p className="mb-2 text-[20px] font-bold leading-tight tracking-tight text-fg">
             {category.category}
           </p>
           <div className="flex flex-wrap gap-1.5">
             {category.items.map((item) => (
               <span
                 key={item.name}
-                className="inline-flex items-center gap-1 rounded bg-lime-soft px-2.5 py-1 text-[10px] text-lime-deep"
+                className="inline-flex items-center gap-1 rounded bg-lime-soft px-3 py-1 text-[12px] text-lime-deep"
               >
                 <SkillIcon name={item.icon} />
                 {item.name}
