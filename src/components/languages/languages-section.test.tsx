@@ -7,7 +7,7 @@ describe('LanguagesSection', () => {
   it('renders every language and proficiency', () => {
     render(<LanguagesSection />);
 
-    expect(document.getElementById('idiomas')).toBeInTheDocument();
+    expect(document.getElementById('idiomas')).toHaveClass('scroll-mt-16', 'px-4', 'py-12');
     expect(screen.getByRole('heading', { name: 'Idiomas' })).toBeInTheDocument();
     for (const language of languages) {
       expect(screen.getByText(language.name)).toBeInTheDocument();

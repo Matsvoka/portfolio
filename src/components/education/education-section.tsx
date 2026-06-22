@@ -4,7 +4,7 @@ import { education } from '@/content/education';
 
 export function EducationSection() {
   return (
-    <section id="formacao" className="scroll-mt-16">
+    <section id="formacao" className="scroll-mt-16 px-4 py-12">
       <SectionTitle icon={GraduationCap}>Formação</SectionTitle>
       <ul className="flex flex-col gap-6">
         {education.map((entry) => (

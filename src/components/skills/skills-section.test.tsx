@@ -6,7 +6,7 @@ import { skills } from '@/content/skills';
 describe('SkillsSection', () => {
   it('renders inside a #skills section landmark', () => {
     render(<SkillsSection />);
-    expect(document.getElementById('skills')).toBeInTheDocument();
+    expect(document.getElementById('skills')).toHaveClass('scroll-mt-16', 'px-4', 'py-12');
   });
 
   it('renders every category and item', () => {

@@ -5,7 +5,7 @@ import { SkillIcon } from './skill-icon';
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="scroll-mt-16">
+    <section id="skills" className="scroll-mt-16 px-4 py-12 lg:pl-8">
       <SectionTitle icon={Wrench}>Skills</SectionTitle>
       {skills.map((category) => (
         <div key={category.category} className="mb-6 last:mb-0">

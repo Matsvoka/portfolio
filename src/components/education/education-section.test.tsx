@@ -6,7 +6,7 @@ import { education } from '@/content/education';
 describe('EducationSection', () => {
   it('renders inside a #formacao section landmark', () => {
     render(<EducationSection />);
-    expect(document.getElementById('formacao')).toBeInTheDocument();
+    expect(document.getElementById('formacao')).toHaveClass('scroll-mt-16', 'px-4', 'py-12');
   });
 
   it('renders degree, institution, and period below it for every entry', () => {

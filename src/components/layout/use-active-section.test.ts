@@ -1,61 +1,82 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { renderHook, act } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { useActiveSection } from './use-active-section';
 
-type Entry = { isIntersecting: boolean; target: Element };
-type ObserverCallback = (entries: Entry[]) => void;
+const sectionIds = ['sobre', 'experiencia', 'skills', 'formacao', 'idiomas', 'projetos'];
+const sectionTops: Record<string, number> = {
+  sobre: 300,
+  experiencia: 700,
+  skills: 900,
+  formacao: 1100,
+  idiomas: 1300,
+  projetos: 1500,
+};
 
-let observedCallback: ObserverCallback | null = null;
-
-class MockIntersectionObserver {
-  constructor(callback: ObserverCallback) {
-    observedCallback = callback;
-  }
-  observe() {}
-  disconnect() {}
+function setScrollY(value: number) {
+  Object.defineProperty(window, 'scrollY', { configurable: true, value });
 }
 
 beforeEach(() => {
-  observedCallback = null;
-  // @ts-expect-error -- test double for a browser API jsdom doesn't implement
-  window.IntersectionObserver = MockIntersectionObserver;
-  document.body.innerHTML =
-    '<div id="sobre"></div><div id="experiencia"></div><div id="skills"></div><div id="formacao"></div><div id="idiomas"></div>';
+  document.body.innerHTML = sectionIds.map((id) => `<section id="${id}"></section>`).join('');
+  setScrollY(0);
+  Object.defineProperty(window, 'innerHeight', { configurable: true, value: 800 });
+  Object.defineProperty(document.documentElement, 'scrollHeight', {
+    configurable: true,
+    value: 2200,
+  });
+
+  for (const id of sectionIds) {
+    const element = document.getElementById(id)!;
+    element.getBoundingClientRect = () =>
+      ({ top: sectionTops[id] - window.scrollY }) as DOMRect;
+  }
 });
 
 describe('useActiveSection', () => {
-  it('starts with the first section id', () => {
-    const { result } = renderHook(() => useActiveSection(['sobre', 'experiencia']));
+  it('starts with the first section before its top reaches the header', () => {
+    const { result } = renderHook(() => useActiveSection(sectionIds));
     expect(result.current).toBe('sobre');
   });
 
-  it('updates to the section reported as intersecting', () => {
-    const { result } = renderHook(() => useActiveSection(['sobre', 'experiencia']));
-    const experienciaEl = document.getElementById('experiencia')!;
-
-    act(() => {
-      observedCallback?.([{ isIntersecting: true, target: experienciaEl }]);
-    });
-
-    expect(result.current).toBe('experiencia');
-  });
-
-  it('tracks Skills and Idiomas as independent sections', () => {
-    const sectionIds = ['sobre', 'experiencia', 'skills', 'formacao', 'idiomas'];
+  it('activates a section only when its top reaches the header offset', () => {
     const { result } = renderHook(() => useActiveSection(sectionIds));
 
     act(() => {
-      observedCallback?.([
-        { isIntersecting: true, target: document.getElementById('skills')! },
-      ]);
+      setScrollY(634);
+      window.dispatchEvent(new Event('scroll'));
+    });
+    expect(result.current).toBe('sobre');
+
+    act(() => {
+      setScrollY(635);
+      window.dispatchEvent(new Event('scroll'));
+    });
+    expect(result.current).toBe('experiencia');
+  });
+
+  it('tracks Skills and Idiomas independently', () => {
+    const { result } = renderHook(() => useActiveSection(sectionIds));
+
+    act(() => {
+      setScrollY(835);
+      window.dispatchEvent(new Event('scroll'));
     });
     expect(result.current).toBe('skills');
 
     act(() => {
-      observedCallback?.([
-        { isIntersecting: true, target: document.getElementById('idiomas')! },
-      ]);
+      setScrollY(1235);
+      window.dispatchEvent(new Event('scroll'));
     });
     expect(result.current).toBe('idiomas');
+  });
+
+  it('activates the final section at the bottom of the page', () => {
+    const { result } = renderHook(() => useActiveSection(sectionIds));
+
+    act(() => {
+      setScrollY(1400);
+      window.dispatchEvent(new Event('scroll'));
+    });
+    expect(result.current).toBe('projetos');
   });
 });

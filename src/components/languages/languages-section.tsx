@@ -4,7 +4,7 @@ import { languages } from '@/content/languages';
 
 export function LanguagesSection() {
   return (
-    <section id="idiomas" className="scroll-mt-16">
+    <section id="idiomas" className="scroll-mt-16 px-4 py-12 lg:pl-8">
       <SectionTitle icon={LanguagesIcon}>Idiomas</SectionTitle>
       <ul className="flex flex-col gap-6">
         {languages.map((language) => (
