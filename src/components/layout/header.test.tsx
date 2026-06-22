@@ -42,13 +42,9 @@ describe('Header', () => {
     expect(screen.getByRole('button', { name: /tema/i })).toBeInTheDocument();
   });
 
-  it('renders the UI size selector', () => {
+  it('renders the UI size selector in place of the language placeholder', () => {
     renderHeader();
     expect(screen.getByRole('combobox', { name: 'Tamanho da interface' })).toBeInTheDocument();
-  });
-
-  it('renders a non-functional language placeholder', () => {
-    renderHeader();
-    expect(screen.getByLabelText(/seletor de idioma ainda não implementado/i)).toBeInTheDocument();
+    expect(screen.queryByText(/PT-BR/i)).not.toBeInTheDocument();
   });
 });

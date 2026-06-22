@@ -54,14 +54,8 @@ export function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <UiSizeSelector />
           <ThemeToggle />
-          <span
-            className="ui-text-meta rounded border border-fg-muted px-1.5 py-0.5 font-mono text-fg-muted"
-            aria-label="Idioma: Português (Brasil). Seletor de idioma ainda não implementado."
-          >
-            PT-BR ⌄
-          </span>
+          <UiSizeSelector />
           <MobileNav items={MOBILE_NAV_ITEMS} activeId={activeId} />
         </div>
       </div>
