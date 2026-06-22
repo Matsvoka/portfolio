@@ -7,7 +7,7 @@ export const experience: ExperienceEntry[] = [
     period: '2023 — Atual',
     description: '[placeholder] Atuação em produto X, liderando a feature Y.',
     current: true,
-    projectSlugs: ['hcp-app'],
+    projectSlugs: ['cablagem', 'cotacao', 'hcp-app'],
   },
   {
     company: 'Empresa Y',

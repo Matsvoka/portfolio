@@ -60,4 +60,32 @@ export const projects: Project[] = [
     demoIndex: 0,
     demo: { type: 'video', src: '/videos/valentines-preview.mp4' },
   },
+  {
+    slug: 'cablagem',
+    title: 'Cablagem',
+    oneLiner: 'Automação de planilha para contagem de materiais e geração de documentos de chicotes. [placeholder]',
+    tags: ['Google Apps Script', 'Google Sheets'],
+    role: 'Engenheiro de software',
+    previewVideo: '/videos/cablagem-placeholder.mp4',
+    narrative: [
+      '[placeholder] Cablagem é um script de Google Apps Script acoplado a uma planilha, que consolida quantitativos de materiais, conectores, luvas, etiquetas e abraçadeiras a partir do comprimento dos cabos.',
+      '[placeholder] Sem mock interativo aqui — a demo é em vídeo, já que o script depende de planilhas e templates internos da HCP.',
+    ],
+    demoIndex: 0,
+    demo: { type: 'video', src: '/videos/cablagem-placeholder.mp4' },
+  },
+  {
+    slug: 'cotacao',
+    title: 'Cotação',
+    oneLiner: 'Extrator de dados de chicotes elétricos a partir de PDFs com IA. [placeholder]',
+    tags: ['Flask', 'React', 'Gemini API'],
+    role: 'Engenheiro de software',
+    previewVideo: '/videos/cotacao-placeholder.mp4',
+    narrative: [
+      '[placeholder] Cotação é um app desktop (Flask + React) que extrai dados de chicotes elétricos a partir de PDFs usando a API do Gemini, com histórico de cotações em um banco local.',
+      '[placeholder] Sem mock interativo aqui — a demo é em vídeo, já que o app depende de PDFs e dados internos da HCP.',
+    ],
+    demoIndex: 0,
+    demo: { type: 'video', src: '/videos/cotacao-placeholder.mp4' },
+  },
 ];
