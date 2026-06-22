@@ -21,7 +21,7 @@ const project: Project = {
  * `widthsByText` is keyed by each mirror block's full textContent (dot +
  * icon + label concatenated, as the DOM actually produces it).
  */
-function mockTagLayout(widthsByText: Record<string, number>, availableWidth: number, gap = 6) {
+function mockTagLayout(widthsByText: Record<string, number>, availableWidth: number, gap = 8) {
   const originalOffsetWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetWidth');
   const originalOffsetLeft = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetLeft');
   const originalClientWidth = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'clientWidth');
@@ -34,7 +34,7 @@ function mockTagLayout(widthsByText: Record<string, number>, availableWidth: num
   });
 
   // Only the hidden mirror row's direct children need a meaningful
-  // offsetLeft (cumulative width of preceding siblings + the row's gap-1.5).
+  // offsetLeft (cumulative width of preceding siblings + the row's gap-2).
   Object.defineProperty(HTMLElement.prototype, 'offsetLeft', {
     configurable: true,
     get(this: HTMLElement) {
