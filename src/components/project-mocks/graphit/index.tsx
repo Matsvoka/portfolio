@@ -26,13 +26,13 @@ export function GraphItMock() {
   return (
     <div className="rounded-md bg-bg-dim p-4">
       <div className="mb-3 flex items-center justify-between">
-        <p className="font-mono text-[10px] uppercase tracking-wide text-fg-muted">
+        <p className="font-mono text-[13px] uppercase tracking-wide text-fg-muted">
           GraphIt — clique na área para desenhar um nó
         </p>
         <button
           type="button"
           onClick={handleAddViaKeyboard}
-          className="rounded bg-lime-soft px-2.5 py-1 font-mono text-[10px] text-lime-deep motion-safe:transition-transform motion-safe:active:scale-95"
+          className="rounded bg-lime-soft px-3.5 py-1.5 font-mono text-[13px] text-lime-deep motion-safe:transition-transform motion-safe:active:scale-95"
         >
           + Adicionar nó (teclado)
         </button>

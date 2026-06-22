@@ -52,13 +52,13 @@ export function DoctagMock() {
 
   return (
     <div className="rounded-md bg-bg-dim p-4">
-      <p className="mb-3 font-mono text-[10px] uppercase tracking-wide text-fg-muted">
+      <p className="mb-3 font-mono text-[13px] uppercase tracking-wide text-fg-muted">
         Doctag — arraste a tag de um documento sobre outro, ou foque nela e use ← → para trocar
       </p>
       <ul className="flex flex-col gap-2">
         {documents.map((doc) => (
           <li key={doc.id} className="flex items-center justify-between gap-3 rounded bg-bg px-3 py-2">
-            <span className="text-xs text-fg">{doc.name}</span>
+            <span className="text-sm text-fg">{doc.name}</span>
             <button
               type="button"
               draggable
@@ -67,7 +67,7 @@ export function DoctagMock() {
               onDrop={(event) => handleDrop(event, doc.id)}
               onKeyDown={(event) => handleKeyDown(event, doc.id)}
               aria-label={`Tag de ${doc.name}: ${doc.tag}. Use as setas para mudar.`}
-              className="cursor-grab rounded bg-lime-soft px-2.5 py-1 font-mono text-[11px] text-lime-deep active:cursor-grabbing motion-safe:transition-transform motion-safe:active:scale-95"
+              className="cursor-grab rounded bg-lime-soft px-3.5 py-1.5 font-mono text-sm text-lime-deep active:cursor-grabbing motion-safe:transition-transform motion-safe:active:scale-95"
             >
               {doc.tag}
             </button>
