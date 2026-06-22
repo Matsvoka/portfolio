@@ -77,7 +77,7 @@ export function ProjectPreviewPopover({
         ref={triggerRef}
         type="button"
         onClick={() => {
-          setPinned(true);
+          setPinned((current) => !current);
           setVisible(true);
         }}
         aria-expanded={visible}

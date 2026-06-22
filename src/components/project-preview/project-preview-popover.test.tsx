@@ -55,13 +55,15 @@ describe('ProjectPreviewPopover', () => {
     expect(trigger).toHaveAttribute('data-pinned', 'true');
   });
 
-  it('keeps the card open if the trigger is clicked again while already pinned', async () => {
+  it('unpins the card when the trigger is clicked again', async () => {
     const user = userEvent.setup();
     renderPopover();
     const trigger = screen.getByRole('button');
     await user.click(trigger);
     await user.click(trigger);
-    expect(screen.getByRole('link')).toBeInTheDocument();
+    expect(trigger).toHaveAttribute('data-pinned', 'false');
+    await user.unhover(trigger);
+    expect(screen.queryByRole('link')).not.toBeInTheDocument();
   });
 
   it('dismisses a pinned card on outside click', async () => {

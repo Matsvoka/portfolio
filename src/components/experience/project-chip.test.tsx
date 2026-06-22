@@ -10,7 +10,7 @@ describe('ProjectChip', () => {
       'bg-lime-bright',
       'hover:bg-lime',
       'active:bg-lime-deep',
-      'motion-safe:active:scale-95',
+      'active:scale-90',
       'data-[pinned=true]:bg-lime-deep',
     );
   });
