@@ -65,6 +65,7 @@ Explicitly out of scope (left unchanged): the Experience timeline's logo/flag pl
   - Title: 15→19px. One-liner: 11→14px (`text-sm`). Tag row: 10→13px, tag icon 10→13, row gap `gap-1.5` (6px) → `gap-2` (8px).
   - Video preview height: `h-20` (80px) → `h-28` (112px) (keeps roughly the same aspect ratio as the card widens).
   - "Ver" link: 11→14px (`text-sm`), `ArrowRight` icon 14→18.
+- **Mock-internal chips** (`project-mocks/doctag/index.tsx`'s drag tag, `project-mocks/graphit/index.tsx`'s "+ Adicionar nó" button): same `px-2.5 py-1` → `px-3.5 py-1.5` chip-padding treatment as every other chip above, for visual consistency with the rest of the chip family even though these are demo content inside an interactive mock rather than the portfolio's own chrome.
 
 The wider card (320px vs 240px) increases the tag row's available content width from ~212px to ~292px, which comfortably fits the current "Cablagem" (`Google Apps Script` / `Google Sheets`) and "Cotação" (`Flask` / `React` / `Gemini API`) tag sets even accounting for the font-swap timing variance observed earlier. The existing `useTagFit` overflow-badge mechanism stays in place unchanged as a safety net for any project with even longer tags in the future.
 
