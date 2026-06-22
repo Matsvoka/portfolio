@@ -4,7 +4,7 @@ import { ProjectChip } from './project-chip';
 
 export function ExperienceEntryRow({ entry }: { entry: ExperienceEntry }) {
   return (
-    <li className="relative pb-6 pl-8 after:absolute after:-bottom-[33px] after:-left-px after:top-[33px] after:w-0.5 after:bg-lime after:content-[''] last:pb-0 last:after:hidden">
+    <li className="relative pb-6 pl-8 after:absolute after:-bottom-[33px] after:-left-px after:top-[33px] after:w-0.5 after:bg-fg-muted after:content-[''] first:after:bg-lime last:pb-0 last:after:hidden">
       <span
         aria-hidden="true"
         className={`absolute -left-[5px] top-7 z-10 h-2.5 w-2.5 rounded-full ${

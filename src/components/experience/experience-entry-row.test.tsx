@@ -33,6 +33,8 @@ describe('ExperienceEntryRow', () => {
     expect(row).toHaveClass(
       'after:top-[33px]',
       'after:-bottom-[33px]',
+      'after:bg-fg-muted',
+      'first:after:bg-lime',
       'last:after:hidden',
     );
   });

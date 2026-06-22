@@ -11,8 +11,8 @@ describe('LanguagesSection', () => {
     expect(screen.getByRole('heading', { name: 'Idiomas' })).toBeInTheDocument();
     for (const language of languages) {
       expect(screen.getByText(language.name)).toBeInTheDocument();
-      expect(screen.getByText(language.proficiency)).toBeInTheDocument();
+      expect(screen.getByText(`(${language.proficiency})`)).toBeInTheDocument();
     }
-    expect(screen.getAllByText('ícone')).toHaveLength(languages.length);
+    expect(screen.getAllByText('bandeira')).toHaveLength(languages.length);
   });
 });

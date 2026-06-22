@@ -7,18 +7,16 @@ export function LanguagesSection() {
   return (
     <section id="idiomas" className="scroll-mt-16 px-4 py-12 lg:pl-8">
       <SectionTitle icon={LanguagesIcon}>Idiomas</SectionTitle>
-      <ul className="flex flex-col gap-6">
+      <ul className="flex flex-col gap-4">
         {languages.map((language) => (
-          <li key={language.name} className="flex gap-3.5">
-            <EntryLogoPlaceholder label="ícone" />
-            <div>
-              <p className="text-[17px] font-bold leading-tight tracking-tight text-fg">
-                {language.name}
-              </p>
-              <p className="mt-0.5 text-sm font-semibold leading-tight text-fg-muted">
-                {language.proficiency}
-              </p>
-            </div>
+          <li key={language.name} className="flex items-center gap-3">
+            <EntryLogoPlaceholder label="bandeira" variant="flag" />
+            <p className="text-[17px] font-bold leading-tight tracking-tight text-fg">
+              <span>{language.name}</span>{' '}
+              <span className="text-sm font-semibold tracking-normal text-fg-muted">
+                ({language.proficiency})
+              </span>
+            </p>
           </li>
         ))}
       </ul>
