@@ -80,7 +80,7 @@ export function ProjectPreviewCard({
       <div
         ref={mirrorRef}
         aria-hidden="true"
-        className="ui-preview-tag-row ui-text-label flex h-0 items-center overflow-hidden font-mono"
+        className="ui-preview-tag-row ui-text-label flex h-0 items-center overflow-hidden whitespace-nowrap font-mono"
       >
         {project.tags.map((tag, index) => (
           <TagBlock key={tag} tag={tag} showDot={index > 0} />
