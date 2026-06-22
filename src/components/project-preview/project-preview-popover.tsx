@@ -145,7 +145,7 @@ export function ProjectPreviewPopover({
       {visible && (
         <div
           onMouseEnter={showPreview}
-          className={`absolute left-0 z-50 w-60 [filter:drop-shadow(0_3px_10px_rgba(18,21,15,0.22))] dark:[filter:drop-shadow(0_3px_10px_rgba(0,0,0,0.45))] ${
+          className={`absolute left-0 z-50 w-80 [filter:drop-shadow(0_3px_10px_rgba(18,21,15,0.22))] dark:[filter:drop-shadow(0_3px_10px_rgba(0,0,0,0.45))] ${
             placement === 'top' ? 'bottom-full mb-2.5' : 'top-full mt-2.5'
           }`}
         >
