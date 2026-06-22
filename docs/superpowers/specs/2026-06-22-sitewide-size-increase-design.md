@@ -46,10 +46,10 @@ Explicitly out of scope (left unchanged): the Experience timeline's logo/flag pl
 
 | Use | File(s) | Current | New |
 |---|---|---|---|
-| Tag icon (`Code2`) | `project-preview-card.tsx`, `project-header.tsx` | 10 | 13 |
+| Tag icon (`Code2`) | `project-preview-card.tsx` (the preview card's tag row only — `project-header.tsx`'s detail-page tags have no icon) | 10 | 13 |
 | Skill icon (default) | `skill-icon.tsx` | 11 | 14 |
-| GithubIcon / ExternalLink (project links), CV download | `project-header.tsx`, `footer.tsx` | 14 | 18 |
-| ArrowRight ("Ver" link), ArrowLeft (back), Sun/Moon (theme toggle) | `project-preview-card.tsx`, `app/projetos/[slug]/page.tsx`, `theme-toggle.tsx` | 16 | 20 |
+| GithubIcon / ExternalLink (project links), CV download, ArrowRight ("Ver" link) | `project-header.tsx`, `footer.tsx`, `project-preview-card.tsx` | 14 | 18 |
+| ArrowLeft (back), Sun/Moon (theme toggle) | `app/projetos/[slug]/page.tsx`, `theme-toggle.tsx` | 16 | 20 |
 | Mail / GithubIcon / LinkedinIcon (social, hero + footer) | `hero.tsx`, `footer.tsx` | 18 | 23 |
 | Menu / X (mobile nav toggle) | `mobile-nav.tsx` | 20 | 26 |
 | Section title icon (`strokeWidth` stays 2.25) | `section-title.tsx` | 24 | 31 |
@@ -58,7 +58,7 @@ Explicitly out of scope (left unchanged): the Experience timeline's logo/flag pl
 
 - **Project chip** (`project-chip.tsx`): text 11→14px (via the badge/period table row above), padding `px-2.5 py-1` → `px-3.5 py-1.5`.
 - **Skill badge** (`skills-section.tsx`): text 10→13px, padding `px-2.5 py-1` → `px-3.5 py-1.5`, icon via `skill-icon.tsx` 11→14.
-- **Project tag, detail page** (`project-header.tsx`): text 10→13px, icon 10→13, padding `px-2.5 py-1` → `px-3.5 py-1.5`.
+- **Project tag, detail page** (`project-header.tsx`): text 10→13px, padding `px-2.5 py-1` → `px-3.5 py-1.5` (no icon — this tag has text only, unlike the preview card's tag row).
 - **Project preview card** (`project-preview-card.tsx`, `project-preview-popover.tsx`):
   - Popover width: `w-60` (240px) → `w-80` (320px).
   - Card padding: `p-3.5` (14px) → `p-5` (20px).
