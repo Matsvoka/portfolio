@@ -5,16 +5,16 @@ import type { Project } from '@/content/types';
 export function ProjectHeader({ project }: { project: Project }) {
   return (
     <header className="mb-6">
-      <h1 className="text-2xl font-bold text-fg">{project.title}</h1>
+      <h1 className="text-3xl font-bold text-fg">{project.title}</h1>
       <div className="mt-2 flex flex-wrap gap-1.5">
         {project.tags.map((tag) => (
-          <span key={tag} className="rounded bg-lime-soft px-2.5 py-1 text-[10px] text-lime-deep">
+          <span key={tag} className="rounded bg-lime-soft px-3.5 py-1.5 text-[13px] text-lime-deep">
             {tag}
           </span>
         ))}
       </div>
       {project.links && (
-        <div className="mt-3 flex gap-4 text-sm text-fg-muted">
+        <div className="mt-3 flex gap-4 text-base text-fg-muted">
           {project.links.github && (
             <a
               href={project.links.github}
@@ -22,7 +22,7 @@ export function ProjectHeader({ project }: { project: Project }) {
               rel="noreferrer"
               className="flex items-center gap-1 hover:text-lime-deep dark:hover:text-lime-bright"
             >
-              <GithubIcon size={14} /> Repositório
+              <GithubIcon size={18} /> Repositório
             </a>
           )}
           {project.links.live && (
@@ -32,7 +32,7 @@ export function ProjectHeader({ project }: { project: Project }) {
               rel="noreferrer"
               className="flex items-center gap-1 hover:text-lime-deep dark:hover:text-lime-bright"
             >
-              <ExternalLink size={14} aria-hidden="true" /> Live demo
+              <ExternalLink size={18} aria-hidden="true" /> Live demo
             </a>
           )}
         </div>
