@@ -6,13 +6,13 @@ export function Hero() {
   return (
     <section className="flex flex-col items-center px-4 py-16 text-center">
       <div
-        className="flex h-[200px] w-[200px] items-center justify-center rounded-full border-4 border-lime bg-bg-dim font-mono text-xs text-fg-muted"
+        className="ui-text-hero-placeholder flex h-[200px] w-[200px] items-center justify-center rounded-full border-4 border-lime bg-bg-dim font-mono text-fg-muted"
         aria-hidden="true"
       >
         foto
       </div>
-      <h1 className="mt-9 text-4xl font-black tracking-tight text-fg">{profile.name}</h1>
-      <p className="mt-1.5 font-mono text-sm uppercase tracking-wide text-lime-deep dark:text-lime-bright">
+      <h1 className="ui-text-hero-title mt-9 font-black tracking-tight text-fg">{profile.name}</h1>
+      <p className="ui-text-body mt-1.5 font-mono uppercase tracking-wide text-lime-deep dark:text-lime-bright">
         {profile.role}
       </p>
       <div className="mt-2 flex items-center gap-3.5 text-fg-muted">
@@ -21,7 +21,7 @@ export function Hero() {
           aria-label="Enviar email"
           className="hover:text-lime-deep dark:hover:text-lime-bright"
         >
-          <Mail size={18} aria-hidden="true" />
+          <Mail className="ui-icon-social" aria-hidden="true" />
         </a>
         <a
           href={profile.github}
@@ -30,7 +30,7 @@ export function Hero() {
           rel="noreferrer"
           className="hover:text-lime-deep dark:hover:text-lime-bright"
         >
-          <GithubIcon size={18} />
+          <GithubIcon className="ui-icon-social" />
         </a>
         <a
           href={profile.linkedin}
@@ -39,7 +39,7 @@ export function Hero() {
           rel="noreferrer"
           className="hover:text-lime-deep dark:hover:text-lime-bright"
         >
-          <LinkedinIcon size={18} />
+          <LinkedinIcon className="ui-icon-social" />
         </a>
       </div>
     </section>

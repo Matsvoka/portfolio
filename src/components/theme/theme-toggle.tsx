@@ -15,7 +15,11 @@ export function ThemeToggle() {
       aria-pressed={isDark}
       className="cursor-pointer rounded p-1.5 text-fg-muted transition-[color,transform] duration-150 hover:text-lime-deep active:scale-75 dark:hover:text-lime-bright"
     >
-      {isDark ? <Moon size={16} aria-hidden="true" /> : <Sun size={16} aria-hidden="true" />}
+      {isDark ? (
+        <Moon className="ui-icon-control" aria-hidden="true" />
+      ) : (
+        <Sun className="ui-icon-control" aria-hidden="true" />
+      )}
     </button>
   );
 }

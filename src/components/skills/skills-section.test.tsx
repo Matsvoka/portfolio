@@ -23,11 +23,11 @@ describe('SkillsSection', () => {
     render(<SkillsSection />);
 
     expect(screen.getByRole('heading', { name: 'Skills' })).toHaveClass(
-      'text-2xl',
+      'ui-text-heading',
       'font-bold',
     );
     expect(screen.getByText(skills[0].category)).toHaveClass(
-      'text-[17px]',
+      'ui-text-entry-title',
       'font-bold',
       'leading-tight',
       'tracking-tight',

@@ -53,6 +53,9 @@ export function useTagFit(tags: string[]): {
       cleanups.push(() => observer.disconnect());
     }
 
+    window.addEventListener('resize', measure);
+    cleanups.push(() => window.removeEventListener('resize', measure));
+
     // A tag's width measured before its web font finishes swapping in (FOUT)
     // can read narrower than the font that actually ends up on screen —
     // re-measure once the real font is confirmed loaded to catch that.

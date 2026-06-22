@@ -15,20 +15,20 @@ export function ExperienceEntryRow({ entry }: { entry: ExperienceEntry }) {
         <EntryLogoPlaceholder />
         <div>
           <p
-            className={`text-[17px] font-bold leading-tight tracking-tight ${
+            className={`ui-text-entry-title font-bold leading-tight tracking-tight ${
               entry.current ? 'text-lime-deep dark:text-lime-bright' : 'text-fg'
             }`}
           >
             {entry.role}
           </p>
-          <p className="mt-0.5 text-sm font-semibold leading-tight text-fg-muted">{entry.company}</p>
-          <p className="mt-0.5 font-mono text-[11px] leading-tight text-fg-muted">{entry.period}</p>
+          <p className="ui-text-body mt-0.5 font-semibold leading-tight text-fg-muted">{entry.company}</p>
+          <p className="ui-text-meta mt-0.5 font-mono leading-tight text-fg-muted">{entry.period}</p>
         </div>
       </div>
-      <p className="ml-[70px] mt-2 text-[12px] text-fg-muted">{entry.description}</p>
+      <p className="ui-text-description ml-[70px] mt-2 text-fg-muted">{entry.description}</p>
       {entry.projectSlugs && entry.projectSlugs.length > 0 && (
         <div className="ml-[70px] mt-2">
-          <p className="mb-1.5 font-mono text-[10px] uppercase tracking-wide text-fg-muted">
+          <p className="ui-text-label mb-1.5 font-mono uppercase tracking-wide text-fg-muted">
             Projetos
           </p>
           <div className="flex flex-wrap gap-1.5">

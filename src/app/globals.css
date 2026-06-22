@@ -37,3 +37,107 @@ body {
   background-color: var(--color-bg);
   color: var(--color-fg);
 }
+
+/*
+ * Temporary UI-size presets. Components consume semantic tokens so the three
+ * candidates stay comparable while the rest of the site keeps evolving.
+ */
+:root,
+[data-ui-size="original"] {
+  --ui-text-body: 0.875rem;
+  --ui-text-entry-title: 1.0625rem;
+  --ui-text-meta: 0.6875rem;
+  --ui-text-description: 0.75rem;
+  --ui-text-label: 0.625rem;
+  --ui-text-hero-placeholder: 0.75rem;
+  --ui-text-hero-title: 2.25rem;
+  --ui-text-heading: 1.5rem;
+  --ui-text-preview-title: 0.9375rem;
+  --ui-icon-tag: 0.625rem;
+  --ui-icon-skill: 0.6875rem;
+  --ui-icon-inline: 0.875rem;
+  --ui-icon-control: 1rem;
+  --ui-icon-social: 1.125rem;
+  --ui-icon-mobile-nav: 1.25rem;
+  --ui-icon-heading: 1.5rem;
+  --ui-chip-x: 0.625rem;
+  --ui-chip-y: 0.25rem;
+  --ui-preview-padding: 0.875rem;
+  --ui-preview-height: 5rem;
+  --ui-preview-width: 15rem;
+  --ui-preview-tag-gap: 0.375rem;
+}
+
+[data-ui-size="subtle"] {
+  --ui-text-body: 0.9375rem;
+  --ui-text-entry-title: 1.25rem;
+  --ui-text-meta: 0.8125rem;
+  --ui-text-description: 0.875rem;
+  --ui-text-label: 0.75rem;
+  --ui-text-hero-placeholder: 0.8125rem;
+  --ui-text-hero-title: 2.625rem;
+  --ui-text-heading: 1.6875rem;
+  --ui-text-preview-title: 1.0625rem;
+  --ui-icon-tag: 0.75rem;
+  --ui-icon-skill: 0.8125rem;
+  --ui-icon-inline: 1rem;
+  --ui-icon-control: 1.125rem;
+  --ui-icon-social: 1.25rem;
+  --ui-icon-mobile-nav: 1.4375rem;
+  --ui-icon-heading: 1.6875rem;
+  --ui-chip-x: 0.75rem;
+  --ui-chip-y: 0.25rem;
+  --ui-preview-padding: 1rem;
+  --ui-preview-height: 6rem;
+  --ui-preview-width: 18rem;
+  --ui-preview-tag-gap: 0.375rem;
+}
+
+[data-ui-size="large"] {
+  --ui-text-body: 1rem;
+  --ui-text-entry-title: 1.375rem;
+  --ui-text-meta: 0.875rem;
+  --ui-text-description: 1rem;
+  --ui-text-label: 0.8125rem;
+  --ui-text-hero-placeholder: 0.875rem;
+  --ui-text-hero-title: 3rem;
+  --ui-text-heading: 1.875rem;
+  --ui-text-preview-title: 1.1875rem;
+  --ui-icon-tag: 0.8125rem;
+  --ui-icon-skill: 0.875rem;
+  --ui-icon-inline: 1.125rem;
+  --ui-icon-control: 1.25rem;
+  --ui-icon-social: 1.4375rem;
+  --ui-icon-mobile-nav: 1.625rem;
+  --ui-icon-heading: 1.9375rem;
+  --ui-chip-x: 0.875rem;
+  --ui-chip-y: 0.375rem;
+  --ui-preview-padding: 1.25rem;
+  --ui-preview-height: 7rem;
+  --ui-preview-width: 20rem;
+  --ui-preview-tag-gap: 0.5rem;
+}
+
+.ui-text-body { font-size: var(--ui-text-body); }
+.ui-text-entry-title { font-size: var(--ui-text-entry-title); }
+.ui-text-meta { font-size: var(--ui-text-meta); }
+.ui-text-description { font-size: var(--ui-text-description); }
+.ui-text-label { font-size: var(--ui-text-label); }
+.ui-text-hero-placeholder { font-size: var(--ui-text-hero-placeholder); }
+.ui-text-hero-title { font-size: var(--ui-text-hero-title); }
+.ui-text-heading { font-size: var(--ui-text-heading); }
+.ui-text-preview-title { font-size: var(--ui-text-preview-title); }
+
+.ui-icon-tag { width: var(--ui-icon-tag); height: var(--ui-icon-tag); }
+.ui-icon-skill { width: var(--ui-icon-skill); height: var(--ui-icon-skill); }
+.ui-icon-inline { width: var(--ui-icon-inline); height: var(--ui-icon-inline); }
+.ui-icon-control { width: var(--ui-icon-control); height: var(--ui-icon-control); }
+.ui-icon-social { width: var(--ui-icon-social); height: var(--ui-icon-social); }
+.ui-icon-mobile-nav { width: var(--ui-icon-mobile-nav); height: var(--ui-icon-mobile-nav); }
+.ui-icon-heading { width: var(--ui-icon-heading); height: var(--ui-icon-heading); }
+
+.ui-chip { padding: var(--ui-chip-y) var(--ui-chip-x); }
+.ui-preview-card { padding: var(--ui-preview-padding); }
+.ui-preview-video { height: var(--ui-preview-height); }
+.ui-preview-popover { width: var(--ui-preview-width); }
+.ui-preview-tag-row { gap: var(--ui-preview-tag-gap); }

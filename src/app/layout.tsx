@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme/theme-provider';
 import { ThemeScript } from '@/components/theme/theme-script';
+import { UiSizeScript } from '@/components/ui-size/ui-size-script';
 import './globals.css';
 
 const geistSans = Geist({
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <ThemeScript />
+        <UiSizeScript />
       </head>
       <body className="font-sans antialiased">
         <ThemeProvider>{children}</ThemeProvider>

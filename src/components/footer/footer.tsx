@@ -9,9 +9,9 @@ export function Footer() {
       <a
         href={profile.resumeUrl}
         download
-        className="flex items-center gap-1.5 rounded bg-lime px-4 py-2 text-sm font-semibold text-ink dark:text-coal"
+        className="ui-text-body flex items-center gap-1.5 rounded bg-lime px-4 py-2 font-semibold text-ink dark:text-coal"
       >
-        <Download size={14} aria-hidden="true" />
+        <Download className="ui-icon-inline" aria-hidden="true" />
         Download CV (PDF)
       </a>
       <div className="flex items-center gap-3.5 text-fg-muted">
@@ -20,7 +20,7 @@ export function Footer() {
           aria-label="Enviar email"
           className="hover:text-lime-deep dark:hover:text-lime-bright"
         >
-          <Mail size={18} aria-hidden="true" />
+          <Mail className="ui-icon-social" aria-hidden="true" />
         </a>
         <a
           href={profile.github}
@@ -29,7 +29,7 @@ export function Footer() {
           rel="noreferrer"
           className="hover:text-lime-deep dark:hover:text-lime-bright"
         >
-          <GithubIcon size={18} />
+          <GithubIcon className="ui-icon-social" />
         </a>
         <a
           href={profile.linkedin}
@@ -38,10 +38,10 @@ export function Footer() {
           rel="noreferrer"
           className="hover:text-lime-deep dark:hover:text-lime-bright"
         >
-          <LinkedinIcon size={18} />
+          <LinkedinIcon className="ui-icon-social" />
         </a>
       </div>
-      <p className="font-mono text-[10px] text-fg-muted">
+      <p className="ui-text-label font-mono text-fg-muted">
         © {new Date().getFullYear()} {profile.name}
       </p>
       </div>

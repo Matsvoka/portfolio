@@ -3,7 +3,7 @@ import type { ComponentType } from 'react';
 
 function LoadingPlaceholder() {
   return (
-    <div className="flex h-48 items-center justify-center rounded-md bg-bg-dim font-mono text-xs text-fg-muted">
+    <div className="ui-text-hero-placeholder flex h-48 items-center justify-center rounded-md bg-bg-dim font-mono text-fg-muted">
       carregando demo…
     </div>
   );

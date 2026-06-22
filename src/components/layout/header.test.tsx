@@ -42,6 +42,11 @@ describe('Header', () => {
     expect(screen.getByRole('button', { name: /tema/i })).toBeInTheDocument();
   });
 
+  it('renders the UI size selector', () => {
+    renderHeader();
+    expect(screen.getByRole('combobox', { name: 'Tamanho da interface' })).toBeInTheDocument();
+  });
+
   it('renders a non-functional language placeholder', () => {
     renderHeader();
     expect(screen.getByLabelText(/seletor de idioma ainda não implementado/i)).toBeInTheDocument();
