@@ -46,4 +46,18 @@ export const projects: Project[] = [
     demoIndex: 0,
     demo: { type: 'video', src: '/videos/hcp-app-placeholder.mp4' },
   },
+  {
+    slug: 'valentines',
+    title: 'Valentines',
+    oneLiner: 'Site personalizado para o Dia dos Namorados. [placeholder]',
+    tags: ['Vercel', 'React'],
+    role: 'Criador e único desenvolvedor',
+    previewVideo: '/videos/valentines-preview.mp4',
+    narrative: [
+      '[placeholder] Valentines é um modelo de site para o Dia dos Namorados com foco na interação do usuário.',
+      '[placeholder] As seções apresentam elementos interativos e a UI/UX foi planejada para ser chamativa e divertida.',
+    ],
+    demoIndex: 0,
+    demo: { type: 'video', src: '/videos/valentines-preview.mp4' },
+  },
 ];
