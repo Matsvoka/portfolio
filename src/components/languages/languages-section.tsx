@@ -11,9 +11,9 @@ export function LanguagesSection() {
         {languages.map((language) => (
           <li key={language.name} className="flex items-center gap-3">
             <EntryLogoPlaceholder label="bandeira" variant="flag" />
-            <p className="text-[17px] font-bold leading-tight tracking-tight text-fg">
+            <p className="text-[22px] font-bold leading-tight tracking-tight text-fg">
               <span>{language.name}</span>{' '}
-              <span className="text-sm font-semibold tracking-normal text-fg-muted">
+              <span className="text-base font-semibold tracking-normal text-fg-muted">
                 ({language.proficiency})
               </span>
             </p>
