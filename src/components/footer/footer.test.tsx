@@ -6,23 +6,27 @@ import { profile } from '@/content/profile';
 describe('Footer', () => {
   it('renders a CV download link', () => {
     render(<Footer />);
-    expect(screen.getByRole('link', { name: /download cv/i })).toHaveAttribute(
-      'href',
-      profile.resumeUrl,
-    );
+    const downloadLink = screen.getByRole('link', { name: /download cv/i });
+
+    expect(downloadLink).toHaveAttribute('href', profile.resumeUrl);
+    expect(downloadLink).toHaveClass('transition-transform', 'active:scale-95');
   });
 
   it('renders contact links', () => {
     render(<Footer />);
-    expect(screen.getByRole('link', { name: 'Enviar email' })).toHaveAttribute(
-      'href',
-      `mailto:${profile.email}`,
-    );
-    expect(screen.getByRole('link', { name: 'Abrir GitHub' })).toHaveAttribute('href', profile.github);
-    expect(screen.getByRole('link', { name: 'Abrir LinkedIn' })).toHaveAttribute(
+    const emailLink = screen.getByRole('link', { name: 'Enviar email' });
+    const githubLink = screen.getByRole('link', { name: 'Abrir GitHub' });
+    const linkedinLink = screen.getByRole('link', { name: 'Abrir LinkedIn' });
+
+    expect(emailLink).toHaveAttribute('href', `mailto:${profile.email}`);
+    expect(githubLink).toHaveAttribute('href', profile.github);
+    expect(linkedinLink).toHaveAttribute(
       'href',
       profile.linkedin,
     );
+    expect(emailLink).toHaveClass('transition-[color,transform]', 'active:scale-90');
+    expect(githubLink).toHaveClass('transition-[color,transform]', 'active:scale-90');
+    expect(linkedinLink).toHaveClass('transition-[color,transform]', 'active:scale-90');
   });
 
   it('renders the current year in the copyright line', () => {

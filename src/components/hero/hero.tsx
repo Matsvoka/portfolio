@@ -19,7 +19,7 @@ export function Hero() {
         <a
           href={`mailto:${profile.email}`}
           aria-label="Enviar email"
-          className="hover:text-lime-deep dark:hover:text-lime-bright"
+          className="inline-flex cursor-pointer transition-[color,transform] duration-150 hover:text-lime-deep active:scale-90 dark:hover:text-lime-bright"
         >
           <Mail className="ui-icon-social" aria-hidden="true" />
         </a>
@@ -28,7 +28,7 @@ export function Hero() {
           aria-label="Abrir GitHub"
           target="_blank"
           rel="noreferrer"
-          className="hover:text-lime-deep dark:hover:text-lime-bright"
+          className="inline-flex cursor-pointer transition-[color,transform] duration-150 hover:text-lime-deep active:scale-90 dark:hover:text-lime-bright"
         >
           <GithubIcon className="ui-icon-social" />
         </a>
@@ -37,7 +37,7 @@ export function Hero() {
           aria-label="Abrir LinkedIn"
           target="_blank"
           rel="noreferrer"
-          className="hover:text-lime-deep dark:hover:text-lime-bright"
+          className="inline-flex cursor-pointer transition-[color,transform] duration-150 hover:text-lime-deep active:scale-90 dark:hover:text-lime-bright"
         >
           <LinkedinIcon className="ui-icon-social" />
         </a>

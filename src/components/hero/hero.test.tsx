@@ -12,14 +12,18 @@ describe('Hero', () => {
 
   it('renders contact links with accessible labels', () => {
     render(<Hero />);
-    expect(screen.getByRole('link', { name: 'Enviar email' })).toHaveAttribute(
-      'href',
-      `mailto:${profile.email}`,
-    );
-    expect(screen.getByRole('link', { name: 'Abrir GitHub' })).toHaveAttribute('href', profile.github);
-    expect(screen.getByRole('link', { name: 'Abrir LinkedIn' })).toHaveAttribute(
+    const emailLink = screen.getByRole('link', { name: 'Enviar email' });
+    const githubLink = screen.getByRole('link', { name: 'Abrir GitHub' });
+    const linkedinLink = screen.getByRole('link', { name: 'Abrir LinkedIn' });
+
+    expect(emailLink).toHaveAttribute('href', `mailto:${profile.email}`);
+    expect(githubLink).toHaveAttribute('href', profile.github);
+    expect(linkedinLink).toHaveAttribute(
       'href',
       profile.linkedin,
     );
+    expect(emailLink).toHaveClass('transition-[color,transform]', 'active:scale-90');
+    expect(githubLink).toHaveClass('transition-[color,transform]', 'active:scale-90');
+    expect(linkedinLink).toHaveClass('transition-[color,transform]', 'active:scale-90');
   });
 });

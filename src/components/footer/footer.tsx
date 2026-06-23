@@ -9,7 +9,7 @@ export function Footer() {
       <a
         href={profile.resumeUrl}
         download
-        className="ui-text-body flex items-center gap-1.5 rounded bg-lime px-4 py-2 font-semibold text-ink dark:text-coal"
+        className="ui-text-body flex cursor-pointer items-center gap-1.5 rounded bg-lime px-4 py-2 font-semibold text-ink transition-transform duration-150 active:scale-95 dark:text-coal"
       >
         <Download className="ui-icon-inline" aria-hidden="true" />
         Download CV (PDF)
@@ -18,7 +18,7 @@ export function Footer() {
         <a
           href={`mailto:${profile.email}`}
           aria-label="Enviar email"
-          className="hover:text-lime-deep dark:hover:text-lime-bright"
+          className="inline-flex cursor-pointer transition-[color,transform] duration-150 hover:text-lime-deep active:scale-90 dark:hover:text-lime-bright"
         >
           <Mail className="ui-icon-social" aria-hidden="true" />
         </a>
@@ -27,7 +27,7 @@ export function Footer() {
           aria-label="Abrir GitHub"
           target="_blank"
           rel="noreferrer"
-          className="hover:text-lime-deep dark:hover:text-lime-bright"
+          className="inline-flex cursor-pointer transition-[color,transform] duration-150 hover:text-lime-deep active:scale-90 dark:hover:text-lime-bright"
         >
           <GithubIcon className="ui-icon-social" />
         </a>
@@ -36,7 +36,7 @@ export function Footer() {
           aria-label="Abrir LinkedIn"
           target="_blank"
           rel="noreferrer"
-          className="hover:text-lime-deep dark:hover:text-lime-bright"
+          className="inline-flex cursor-pointer transition-[color,transform] duration-150 hover:text-lime-deep active:scale-90 dark:hover:text-lime-bright"
         >
           <LinkedinIcon className="ui-icon-social" />
         </a>
