@@ -7,28 +7,29 @@ export function SkillsSection() {
   return (
     <section id="skills" className="scroll-mt-16 px-4 py-12 lg:pl-8">
       <SectionTitle icon={Wrench}>Skills</SectionTitle>
-      <div className="flex flex-col gap-2">
+      <div data-testid="skills-card" className="rounded-sm border border-fg/10 bg-bg p-4">
         {skills.map((category) => (
-          <article
+          <section
             key={category.category}
-            data-testid="skill-category-card"
-            className="rounded-sm border border-fg/10 bg-bg p-4"
+            data-testid="skill-category-section"
+            className="border-b border-fg/10 py-4 first:pt-0 last:border-b-0 last:pb-0"
           >
             <p className="ui-text-entry-title mb-2 font-bold leading-tight tracking-tight text-fg">
               {category.category}
             </p>
-            <div className="flex flex-wrap gap-1.5">
+            <ul className="flex flex-wrap gap-1.5">
               {category.items.map((item) => (
-                <span
+                <li
                   key={item.name}
-                  className="ui-chip ui-text-label inline-flex items-center gap-1 rounded bg-lime-soft text-lime-deep"
+                  data-testid="skill-item"
+                  className="ui-chip ui-text-label inline-flex items-center gap-1 rounded border border-fg/10 bg-fg/5 text-fg-muted"
                 >
                   <SkillIcon name={item.icon} />
                   {item.name}
-                </span>
+                </li>
               ))}
-            </div>
-          </article>
+            </ul>
+          </section>
         ))}
       </div>
     </section>

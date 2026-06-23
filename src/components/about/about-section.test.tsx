@@ -14,6 +14,8 @@ describe('AboutSection', () => {
       'mx-auto',
       'max-w-6xl',
     );
+    expect(container.querySelector('p')?.parentElement).toHaveClass('w-full');
+    expect(container.querySelector('p')?.parentElement).not.toHaveClass('max-w-3xl');
     expect(screen.getByRole('heading', { name: 'Sobre mim' })).toBeInTheDocument();
     expect(container.querySelectorAll('p')).toHaveLength(2);
     for (const paragraph of aboutParagraphs) {

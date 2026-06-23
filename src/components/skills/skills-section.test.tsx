@@ -11,7 +11,10 @@ describe('SkillsSection', () => {
 
   it('renders every category and item', () => {
     render(<SkillsSection />);
-    expect(screen.getAllByTestId('skill-category-card')).toHaveLength(skills.length);
+    expect(screen.getAllByTestId('skill-category-section')).toHaveLength(skills.length);
+    expect(screen.getAllByTestId('skill-item')).toHaveLength(
+      skills.reduce((total, category) => total + category.items.length, 0),
+    );
 
     for (const category of skills) {
       expect(screen.getByText(category.category)).toBeInTheDocument();
@@ -21,13 +24,45 @@ describe('SkillsSection', () => {
     }
   });
 
-  it('shows each category inside a highlighted low-radius card', () => {
+  it('shows skill items as subdued chips', () => {
     render(<SkillsSection />);
 
-    expect(screen.getAllByTestId('skill-category-card')[0].parentElement).toHaveClass('gap-2');
-    for (const card of screen.getAllByTestId('skill-category-card')) {
-      expect(card).toHaveClass('rounded-sm', 'border', 'border-fg/10', 'bg-bg', 'p-4');
+    for (const item of screen.getAllByTestId('skill-item')) {
+      expect(item).toHaveClass(
+        'ui-chip',
+        'inline-flex',
+        'items-center',
+        'gap-1',
+        'rounded',
+        'border',
+        'border-fg/10',
+        'bg-fg/5',
+        'text-fg-muted',
+      );
+      expect(item).not.toHaveClass('bg-lime-soft', 'text-lime-deep');
     }
+  });
+
+  it('shows categories inside one highlighted low-radius card with separators', () => {
+    render(<SkillsSection />);
+
+    expect(screen.getByTestId('skills-card')).toHaveClass(
+      'rounded-sm',
+      'border',
+      'border-fg/10',
+      'bg-bg',
+      'p-4',
+    );
+    expect(screen.getAllByTestId('skill-category-section')[0]).toHaveClass(
+      'border-b',
+      'border-fg/10',
+      'py-4',
+      'first:pt-0',
+    );
+    expect(screen.getAllByTestId('skill-category-section').at(-1)).toHaveClass(
+      'last:border-b-0',
+      'last:pb-0',
+    );
   });
 
   it('uses the primary section and experience-role typography', () => {
