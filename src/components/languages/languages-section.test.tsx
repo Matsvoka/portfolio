@@ -12,7 +12,7 @@ describe('LanguagesSection', () => {
 
     expect(card).toContainElement(screen.getByRole('heading', { name: 'Idiomas' }));
     expect(card).toHaveClass(
-      'rounded-lg',
+      'rounded-sm',
       'border',
       'border-fg/10',
       'bg-bg',

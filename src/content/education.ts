@@ -2,18 +2,18 @@ import type { EducationEntry } from './types';
 
 export const education: EducationEntry[] = [
   {
-    degree: 'Bacharelado em Ciência da Computação',
-    institution: 'Universidade X',
-    period: '2016 — 2020',
+    degree: 'Bacharelado em Ciência e Tecnologia',
+    institution: 'UNIFESP',
+    period: '2017 — 2020',
   },
   {
-    degree: 'Técnico em Informática',
-    institution: 'Escola Y',
-    period: '2013 — 2015',
+    degree: 'Técnico em Eletrônica',
+    institution: 'CTIG - UNESP',
+    period: '2014 — 2016',
   },
   {
     degree: 'Língua Inglesa',
-    institution: 'Escola de Idiomas',
-    period: '2010 — 2014',
+    institution: 'Yázigi',
+    period: '2008 — 2014',
   },
 ];

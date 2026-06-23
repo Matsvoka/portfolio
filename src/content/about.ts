@@ -1,4 +1,5 @@
 export const aboutParagraphs = [
-  'Sou engenheiro de software full-stack e gosto de transformar problemas complexos em produtos digitais simples, úteis e bem construídos. Atuo da descoberta à entrega, aproximando decisões técnicas das necessidades de quem usa o produto.',
-  'No dia a dia, trabalho com TypeScript, React, Node.js e dados, sempre buscando código sustentável, interfaces cuidadosas e colaboração direta. Também gosto de explorar novas ferramentas e compartilhar o que aprendo em projetos que conectam tecnologia e impacto real.',
+  'Atuo de ponta a ponta no desenvolvimento de produtos digitais, desde a identificação de problemas e definição de requisitos até o design, implementação, testes e entrega.',
+  'Tenho grande interesse por UX/UI e pelo desafio de projetar experiências claras, intuitivas e eficientes, capazes de guiar o usuário de forma natural. Para mim, um bom design combina clareza, praticidade e elegância, sem sacrificar nenhum desses elementos.',
+  'No dia a dia, utilizo Figma e Adobe Illustrator para planejar interfaces e validar conceitos, além de React para prototipação e refinamento da experiência do usuário. Também utilizo ferramentas de desenvolvimento assistido por IA para acelerar a execução e a experimentação, mantendo total responsabilidade pelas decisões de produto, arquitetura e design.',
 ];
