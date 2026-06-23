@@ -21,7 +21,11 @@ describe('LanguagesSection', () => {
     for (const language of languages) {
       expect(screen.getByText(language.name)).toBeInTheDocument();
       expect(screen.getByText(`(${language.proficiency})`)).toBeInTheDocument();
+      expect(screen.getByTestId(`language-flag-${language.countryCode}`)).toHaveClass(
+        'h-7',
+        'w-10',
+        'rounded',
+      );
     }
-    expect(screen.getAllByText('bandeira')).toHaveLength(languages.length);
   });
 });
