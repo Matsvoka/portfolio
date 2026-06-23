@@ -32,7 +32,7 @@ export function Header() {
   const desktopActiveId = DESKTOP_SECTION_ALIASES[activeId] ?? activeId;
 
   return (
-    <header className="relative sticky top-0 z-40 border-b border-bg-dim bg-bg px-4 py-3">
+    <header className="relative sticky top-0 z-40 border-b border-fg/10 bg-bg/75 px-4 py-3 shadow-sm shadow-coal/5 backdrop-blur-xl backdrop-saturate-150 dark:bg-bg/65 dark:shadow-black/20">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
         <a href="#sobre" className="font-bold tracking-tight text-fg">
           VM

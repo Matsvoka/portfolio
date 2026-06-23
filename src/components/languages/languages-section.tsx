@@ -26,7 +26,10 @@ function LanguageFlag({ language }: { language: LanguageEntry }) {
 export function LanguagesSection() {
   return (
     <section id="idiomas" className="scroll-mt-16 px-4 py-12 lg:pl-8">
-      <div data-testid="languages-card" className="rounded-lg border border-fg/10 bg-bg p-4">
+      <div
+        data-testid="languages-card"
+        className="rounded-lg border border-white/45 bg-zinc-200/45 p-4 shadow-xl shadow-coal/15 backdrop-blur-2xl backdrop-saturate-150 ring-1 ring-white/25 dark:border-white/10 dark:bg-zinc-800/45 dark:shadow-black/35 dark:ring-white/10"
+      >
         <SectionTitle icon={LanguagesIcon}>Idiomas</SectionTitle>
         <ul className="flex flex-col gap-4">
           {languages.map((language) => (

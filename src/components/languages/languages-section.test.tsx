@@ -14,8 +14,11 @@ describe('LanguagesSection', () => {
     expect(card).toHaveClass(
       'rounded-lg',
       'border',
-      'border-fg/10',
-      'bg-bg',
+      'border-white/45',
+      'bg-zinc-200/45',
+      'shadow-xl',
+      'backdrop-blur-2xl',
+      'backdrop-saturate-150',
       'p-4',
     );
     for (const language of languages) {

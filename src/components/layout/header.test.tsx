@@ -14,7 +14,12 @@ function renderHeader() {
 
 describe('Header', () => {
   it('renders all nav items', () => {
-    renderHeader();
+    const { container } = renderHeader();
+    expect(container.querySelector('header')).toHaveClass(
+      'bg-bg/75',
+      'backdrop-blur-xl',
+      'backdrop-saturate-150',
+    );
     expect(screen.getByRole('link', { name: 'Sobre' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Experiência' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Formação' })).toBeInTheDocument();
