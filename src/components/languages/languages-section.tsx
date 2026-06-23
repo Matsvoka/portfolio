@@ -6,20 +6,22 @@ import { languages } from '@/content/languages';
 export function LanguagesSection() {
   return (
     <section id="idiomas" className="scroll-mt-16 px-4 py-12 lg:pl-8">
-      <SectionTitle icon={LanguagesIcon}>Idiomas</SectionTitle>
-      <ul className="flex flex-col gap-4">
-        {languages.map((language) => (
-          <li key={language.name} className="flex items-center gap-3">
-            <EntryLogoPlaceholder label="bandeira" variant="flag" />
-            <p className="ui-text-entry-title font-bold leading-tight tracking-tight text-fg">
-              <span>{language.name}</span>{' '}
-              <span className="ui-text-body font-semibold tracking-normal text-fg-muted">
-                ({language.proficiency})
-              </span>
-            </p>
-          </li>
-        ))}
-      </ul>
+      <div data-testid="languages-card" className="rounded-lg border border-fg/10 bg-bg p-4">
+        <SectionTitle icon={LanguagesIcon}>Idiomas</SectionTitle>
+        <ul className="flex flex-col gap-4">
+          {languages.map((language) => (
+            <li key={language.name} className="flex items-center gap-3">
+              <EntryLogoPlaceholder label="bandeira" variant="flag" />
+              <p className="ui-text-entry-title font-bold leading-tight tracking-tight text-fg">
+                <span>{language.name}</span>{' '}
+                <span className="ui-text-body font-semibold tracking-normal text-fg-muted">
+                  ({language.proficiency})
+                </span>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

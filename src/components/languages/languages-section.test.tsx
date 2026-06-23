@@ -8,7 +8,16 @@ describe('LanguagesSection', () => {
     render(<LanguagesSection />);
 
     expect(document.getElementById('idiomas')).toHaveClass('scroll-mt-16', 'px-4', 'py-12');
-    expect(screen.getByRole('heading', { name: 'Idiomas' })).toBeInTheDocument();
+    const card = screen.getByTestId('languages-card');
+
+    expect(card).toContainElement(screen.getByRole('heading', { name: 'Idiomas' }));
+    expect(card).toHaveClass(
+      'rounded-lg',
+      'border',
+      'border-fg/10',
+      'bg-bg',
+      'p-4',
+    );
     for (const language of languages) {
       expect(screen.getByText(language.name)).toBeInTheDocument();
       expect(screen.getByText(`(${language.proficiency})`)).toBeInTheDocument();
