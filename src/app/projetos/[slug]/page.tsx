@@ -1,25 +1,22 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
-import { projects } from '@/content/projects';
-import { getProjectBySlug } from '@/lib/projects';
-import { splitNarrativeAtDemoIndex } from '@/lib/narrative';
+import { projectDetails } from '@/content/project-details';
+import { getProjectDetail } from '@/lib/projects';
 import { ProjectHeader } from '@/components/project-detail/project-header';
 import { DemoSlot } from '@/components/project-detail/demo-slot';
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return Object.keys(projectDetails).map((slug) => ({ slug }));
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = getProjectDetail(slug);
 
   if (!project) {
     notFound();
   }
-
-  const { before, after } = splitNarrativeAtDemoIndex(project.narrative, project.demoIndex);
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-12">
@@ -31,19 +28,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         <span>Voltar</span>
       </Link>
       <ProjectHeader project={project} />
-      {before.map((paragraph, index) => (
-        <p key={index} className="ui-text-body mb-4 text-fg-muted">
-          {paragraph}
-        </p>
-      ))}
-      <div className="mb-4">
-        <DemoSlot demo={project.demo} />
-      </div>
-      {after.map((paragraph, index) => (
-        <p key={index} className="ui-text-body mb-4 text-fg-muted">
-          {paragraph}
-        </p>
-      ))}
+      {project.sections.map((block, index) =>
+        block.type === 'paragraph' ? (
+          <p key={index} className="ui-text-body mb-4 text-fg-muted">
+            {block.text}
+          </p>
+        ) : (
+          <div key={index} className="mb-4">
+            <DemoSlot demo={block.demo} />
+          </div>
+        ),
+      )}
     </main>
   );
 }

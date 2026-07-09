@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { isPersonalProject, getPersonalProjects, getProjectBySlug } from './projects';
+import {
+  isPersonalProject,
+  getPersonalProjects,
+  getProjectSummaryBySlug,
+  getProjectDetail,
+} from './projects';
 
 describe('isPersonalProject', () => {
   it('returns false for a project linked to an experience entry', () => {
@@ -20,12 +25,22 @@ describe('getPersonalProjects', () => {
   });
 });
 
-describe('getProjectBySlug', () => {
-  it('finds a project by slug', () => {
-    expect(getProjectBySlug('doctag')?.title).toBe('Doctag');
+describe('getProjectSummaryBySlug', () => {
+  it('finds a project summary by slug', () => {
+    expect(getProjectSummaryBySlug('doctag')?.title).toBe('Doctag');
   });
 
   it('returns undefined for an unknown slug', () => {
-    expect(getProjectBySlug('nonexistent-slug')).toBeUndefined();
+    expect(getProjectSummaryBySlug('nonexistent-slug')).toBeUndefined();
+  });
+});
+
+describe('getProjectDetail', () => {
+  it('finds a project detail by slug', () => {
+    expect(getProjectDetail('doctag')?.title).toBe('Doctag');
+  });
+
+  it('returns undefined for an unknown slug', () => {
+    expect(getProjectDetail('nonexistent-slug')).toBeUndefined();
   });
 });

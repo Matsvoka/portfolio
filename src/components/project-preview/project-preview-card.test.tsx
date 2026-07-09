@@ -1,18 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import { ProjectPreviewCard } from './project-preview-card';
-import type { Project } from '@/content/types';
+import type { ProjectSummary } from '@/content/types';
 
-const project: Project = {
+const project: ProjectSummary = {
   slug: 'doctag',
   title: 'Doctag',
   oneLiner: 'App desktop de tagging de documentos.',
   tags: ['Electron', 'React', 'PostgreSQL', 'Docker'],
-  role: 'Criador',
   previewVideo: '/videos/doctag-preview.mp4',
-  narrative: ['Parágrafo 1.'],
-  demoIndex: 0,
-  demo: { type: 'video', src: '/videos/doctag-detail-demo.mp4' },
 };
 
 describe('ProjectPreviewCard', () => {
@@ -39,7 +35,7 @@ describe('ProjectPreviewCard', () => {
     expect(tagRow.queryByText(/^\+\d+$/)).not.toBeInTheDocument();
   });
 
-  it('always renders the dedicated preview video, independently of the detail demo', () => {
+  it('renders the dedicated preview video', () => {
     const { container } = render(<ProjectPreviewCard project={project} />);
     const video = screen.getByLabelText('Preview em vídeo do projeto Doctag');
     const source = container.querySelector('video source');
@@ -47,7 +43,6 @@ describe('ProjectPreviewCard', () => {
     expect(video).toHaveAttribute('autoplay');
     expect(video).toHaveAttribute('loop');
     expect(source).toHaveAttribute('src', project.previewVideo);
-    expect(project.demo).toEqual({ type: 'video', src: '/videos/doctag-detail-demo.mp4' });
   });
 
   it('applies its own elevation shadow by default', () => {

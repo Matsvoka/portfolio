@@ -1,6 +1,6 @@
 'use client';
 
-import type { Project } from '@/content/types';
+import type { ProjectSummary } from '@/content/types';
 import { ProjectTagRow } from './project-tag-row';
 import { ProjectViewLink } from './project-view-link';
 import { ProjectPreviewVideo } from './project-preview-video';
@@ -9,7 +9,7 @@ export function ProjectPreviewCard({
   project,
   elevated = true,
 }: {
-  project: Project;
+  project: ProjectSummary;
   elevated?: boolean;
 }) {
   return (

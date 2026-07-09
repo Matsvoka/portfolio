@@ -1,6 +1,6 @@
-import type { Project } from '@/content/types';
+import type { ProjectDemo } from '@/content/types';
 
-export function DemoSlot({ demo }: { demo: Project['demo'] }) {
+export function DemoSlot({ demo }: { demo: ProjectDemo }) {
   if (demo.type === 'none') return null;
 
   if (demo.type === 'video') {

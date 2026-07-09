@@ -1,8 +1,8 @@
 import { ProjectPreviewPopover } from '@/components/project-preview/project-preview-popover';
-import { getProjectBySlug } from '@/lib/projects';
+import { getProjectSummaryBySlug } from '@/lib/projects';
 
 export function ProjectChip({ slug }: { slug: string }) {
-  const project = getProjectBySlug(slug);
+  const project = getProjectSummaryBySlug(slug);
   if (!project) return null;
 
   return (

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
-import type { Project } from '@/content/types';
+import type { ProjectSummary } from '@/content/types';
 import { ProjectPreviewCard } from './project-preview-card';
 import { usePopoverPlacement, type PopoverPlacement } from './use-popover-placement';
 
@@ -34,7 +34,7 @@ export function ProjectPreviewPopover({
   children,
   triggerClassName = '',
 }: {
-  project: Project;
+  project: ProjectSummary;
   children: ReactNode;
   triggerClassName?: string;
 }) {

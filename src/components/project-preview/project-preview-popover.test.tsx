@@ -2,21 +2,17 @@ import { beforeEach, describe, it, expect, vi } from 'vitest';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ProjectPreviewPopover } from './project-preview-popover';
-import type { Project } from '@/content/types';
+import type { ProjectSummary } from '@/content/types';
 
-const project: Project = {
+const project: ProjectSummary = {
   slug: 'doctag',
   title: 'Doctag',
   oneLiner: 'App desktop de tagging de documentos.',
   tags: ['Electron'],
-  role: 'Criador',
   previewVideo: '/videos/doctag-preview.mp4',
-  narrative: ['Parágrafo.'],
-  demoIndex: 0,
-  demo: { type: 'video', src: '/videos/doctag-preview.mp4' },
 };
 
-const secondProject: Project = {
+const secondProject: ProjectSummary = {
   ...project,
   slug: 'graphit',
   title: 'GraphIt',

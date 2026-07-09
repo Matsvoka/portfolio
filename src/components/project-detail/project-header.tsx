@@ -1,8 +1,8 @@
 import { ExternalLink } from 'lucide-react';
 import { GithubIcon } from '@/components/icons/social-icons';
-import type { Project } from '@/content/types';
+import type { ProjectDetail } from '@/content/types';
 
-export function ProjectHeader({ project }: { project: Project }) {
+export function ProjectHeader({ project }: { project: ProjectDetail }) {
   return (
     <header className="mb-6">
       <h1 className="ui-text-heading font-bold text-fg">{project.title}</h1>

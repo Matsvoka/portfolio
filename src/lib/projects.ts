@@ -1,6 +1,7 @@
 import { projects } from '@/content/projects';
 import { experience } from '@/content/experience';
-import type { Project } from '@/content/types';
+import { projectDetails } from '@/content/project-details';
+import type { ProjectSummary, ProjectDetail } from '@/content/types';
 
 function getLinkedProjectSlugs(): Set<string> {
   const slugs = new Set<string>();
@@ -16,10 +17,14 @@ export function isPersonalProject(slug: string): boolean {
   return !getLinkedProjectSlugs().has(slug);
 }
 
-export function getPersonalProjects(): Project[] {
+export function getPersonalProjects(): ProjectSummary[] {
   return projects.filter((project) => isPersonalProject(project.slug));
 }
 
-export function getProjectBySlug(slug: string): Project | undefined {
+export function getProjectSummaryBySlug(slug: string): ProjectSummary | undefined {
   return projects.find((project) => project.slug === slug);
+}
+
+export function getProjectDetail(slug: string): ProjectDetail | undefined {
+  return projectDetails[slug];
 }

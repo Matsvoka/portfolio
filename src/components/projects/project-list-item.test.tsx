@@ -1,18 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { ProjectListItem } from './project-list-item';
-import type { Project } from '@/content/types';
+import type { ProjectSummary } from '@/content/types';
 
-const project: Project = {
+const project: ProjectSummary = {
   slug: 'doctag',
   title: 'Doctag',
   oneLiner: 'App desktop de tagging de documentos.',
   tags: ['Electron', 'React'],
-  role: 'Criador',
   previewVideo: '/videos/doctag-preview.mp4',
-  narrative: ['Parágrafo 1.'],
-  demoIndex: 0,
-  demo: { type: 'video', src: '/videos/doctag-preview.mp4' },
 };
 
 describe('ProjectListItem', () => {

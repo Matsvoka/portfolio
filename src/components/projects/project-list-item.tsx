@@ -1,10 +1,10 @@
-import type { Project } from '@/content/types';
+import type { ProjectSummary } from '@/content/types';
 import { EntryLogoPlaceholder } from '@/components/shared/entry-logo-placeholder';
 import { ProjectTagRow } from '@/components/project-preview/project-tag-row';
 import { ProjectViewLink } from '@/components/project-preview/project-view-link';
 import { ProjectPreviewVideo } from '@/components/project-preview/project-preview-video';
 
-export function ProjectListItem({ project }: { project: Project }) {
+export function ProjectListItem({ project }: { project: ProjectSummary }) {
   return (
     <div className="flex gap-3.5">
       <EntryLogoPlaceholder />

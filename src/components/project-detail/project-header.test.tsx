@@ -1,19 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { ProjectHeader } from './project-header';
-import type { Project } from '@/content/types';
+import type { ProjectDetail } from '@/content/types';
 
-const project: Project = {
+const project: ProjectDetail = {
   slug: 'doctag',
   title: 'Doctag',
-  oneLiner: 'App desktop de tagging de documentos.',
   tags: ['Electron', 'React'],
-  role: 'Criador',
-  previewVideo: '/videos/doctag-preview.mp4',
-  narrative: [],
-  demoIndex: 0,
-  demo: { type: 'none' },
   links: { github: 'https://github.com/placeholder/doctag' },
+  sections: [],
 };
 
 describe('ProjectHeader', () => {

@@ -8,20 +8,28 @@ export type ProjectLinks = {
   live?: string;
 };
 
-export type Project = {
+/** Lightweight index entry — feeds only the home page project list/preview cards. */
+export type ProjectSummary = {
   slug: string;
   title: string;
   oneLiner: string;
   tags: string[];
-  role: string;
   /** Silent looping video used exclusively by preview cards on the home page. */
   previewVideo: string;
-  narrative: string[];
-  /** How many narrative paragraphs render before the demo slot. 0 = demo right after the header. */
-  demoIndex: number;
-  /** Rich demo rendered exclusively on the project detail page. */
-  demo: ProjectDemo;
+};
+
+/** One piece of a project's case-study page, rendered in array order. */
+export type ProjectContentBlock =
+  | { type: 'paragraph'; text: string }
+  | { type: 'demo'; demo: ProjectDemo };
+
+/** Full case-study content for a project's own /projetos/[slug] page. */
+export type ProjectDetail = {
+  slug: string;
+  title: string;
+  tags: string[];
   links?: ProjectLinks;
+  sections: ProjectContentBlock[];
 };
 
 /** A single logo, or a light/dark pair swapped via the `dark:` variant. */
