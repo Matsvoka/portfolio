@@ -21,10 +21,10 @@ describe('ProjectListItem', () => {
     expect(screen.getByText('logo')).toBeInTheDocument();
   });
 
-  it('renders the title and one-liner', () => {
+  it('renders the title and one-liner at the entry-row sizing tokens', () => {
     render(<ProjectListItem project={project} />);
-    expect(screen.getByText('Doctag')).toBeInTheDocument();
-    expect(screen.getByText(project.oneLiner)).toBeInTheDocument();
+    expect(screen.getByText('Doctag')).toHaveClass('ui-text-entry-title');
+    expect(screen.getByText(project.oneLiner)).toHaveClass('ui-text-description');
   });
 
   it('links to the project detail page through the Ver control', () => {
