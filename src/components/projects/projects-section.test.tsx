@@ -9,11 +9,22 @@ describe('ProjectsSection', () => {
     expect(document.getElementById('projetos')).toBeInTheDocument();
   });
 
-  it('renders a card for every personal project and none of the linked ones', () => {
+  it('renders a list item for every personal project and none of the linked ones', () => {
     render(<ProjectsSection />);
     for (const project of getPersonalProjects()) {
       expect(screen.getByText(project.title)).toBeInTheDocument();
     }
     expect(screen.queryByText('HCP App')).not.toBeInTheDocument();
+  });
+
+  it('renders one bordered container with a separator between each project item', () => {
+    render(<ProjectsSection />);
+    const list = screen.getByRole('list');
+    const items = screen.getAllByRole('listitem');
+
+    expect(list.className).toContain('border');
+    expect(items).toHaveLength(getPersonalProjects().length);
+    expect(items[0].className).toContain('first:pt-0');
+    expect(items[items.length - 1].className).toContain('last:border-b-0');
   });
 });
