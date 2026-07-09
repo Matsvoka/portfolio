@@ -116,4 +116,18 @@ export const projects: Project[] = [
     demoIndex: 0,
     demo: { type: 'video', src: '/videos/itinerario-placeholder.mp4' },
   },
+  {
+    slug: 'hcp-margens',
+    title: 'HCP Margens',
+    oneLiner: 'Sistema de monitoramento de margens de venda.',
+    tags: ['Python', 'React', 'Docker'],
+    role: 'Engenheiro de software',
+    previewVideo: '/videos/hcp-margens-placeholder.mp4',
+    narrative: [
+      '[placeholder] O Monitor de Margens é um sistema para registrar componentes, PCMs e vendas por cliente, tal como variações no custo e valor de venda. Então é possível monitorar como essas variações afetam os limites comerciais definidos no sistema.',
+      '[placeholder] Sem mock interativo aqui — a demo é em vídeo, já que o script depende de planilhas e templates internos da HCP.',
+    ],
+    demoIndex: 0,
+    demo: { type: 'video', src: '/videos/hcp-margens-placeholder.mp4' },
+  },
 ];

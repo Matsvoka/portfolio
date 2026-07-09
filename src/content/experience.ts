@@ -7,7 +7,7 @@ export const experience: ExperienceEntry[] = [
     period: '2026 — Atual',
     description: 'Desenvolvedor full-stack de soluções para processos internos e apoio à engenharia.',
     current: true,
-    projectSlugs: ['cablagem', 'extrator', 'hcp-app'],
+    projectSlugs: ['cablagem', 'extrator', 'hcp-app', 'hcp-margens'],
   },
   {
     company: 'Dominioz Serviços de Telecomunicações LTDA',
