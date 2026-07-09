@@ -18,7 +18,7 @@ describe('EducationSection', () => {
       expect(screen.getByText(entry.period)).toBeInTheDocument();
     }
     for (const entry of education) {
-      expect(screen.getByAltText(entry.institution)).toBeInTheDocument();
+      expect(screen.getAllByAltText(entry.institution).length).toBeGreaterThan(0);
     }
   });
 

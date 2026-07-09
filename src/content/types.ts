@@ -24,12 +24,15 @@ export type Project = {
   links?: ProjectLinks;
 };
 
+/** A single logo, or a light/dark pair swapped via the `dark:` variant. */
+export type EntryLogoSource = string | { light: string; dark: string };
+
 export type ExperienceEntry = {
   company: string;
   role: string;
   period: string;
   description: string;
-  logo?: string;
+  logo?: EntryLogoSource;
   /** Marks the entry whose title/dot render in lime — the current job. */
   current?: boolean;
   projectSlugs?: string[];
@@ -50,7 +53,7 @@ export type EducationEntry = {
   degree: string;
   institution: string;
   period: string;
-  logo?: string;
+  logo?: EntryLogoSource;
 };
 
 export type Profile = {
