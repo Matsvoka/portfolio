@@ -12,7 +12,7 @@ const project: Project = {
   previewVideo: '/videos/doctag-preview.mp4',
   narrative: ['Parágrafo 1.'],
   demoIndex: 0,
-  demo: { type: 'mock', component: 'doctag' },
+  demo: { type: 'video', src: '/videos/doctag-detail-demo.mp4' },
 };
 
 describe('ProjectPreviewCard', () => {
@@ -47,7 +47,7 @@ describe('ProjectPreviewCard', () => {
     expect(video).toHaveAttribute('autoplay');
     expect(video).toHaveAttribute('loop');
     expect(source).toHaveAttribute('src', project.previewVideo);
-    expect(project.demo.type).toBe('mock');
+    expect(project.demo).toEqual({ type: 'video', src: '/videos/doctag-detail-demo.mp4' });
   });
 
   it('applies its own elevation shadow by default', () => {

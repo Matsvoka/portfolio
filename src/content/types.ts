@@ -1,5 +1,4 @@
 export type ProjectDemo =
-  | { type: 'mock'; component: string }
   | { type: 'video'; src: string }
   | { type: 'gif'; src: string }
   | { type: 'none' };

@@ -13,7 +13,7 @@ const project: Project = {
   previewVideo: '/videos/doctag-preview.mp4',
   narrative: ['Parágrafo.'],
   demoIndex: 0,
-  demo: { type: 'mock', component: 'doctag' },
+  demo: { type: 'video', src: '/videos/doctag-preview.mp4' },
 };
 
 const secondProject: Project = {

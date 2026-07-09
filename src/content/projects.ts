@@ -14,7 +14,7 @@ export const projects: Project[] = [
       '[placeholder] Construído com Electron + React, com foco em uma experiência rápida mesmo com milhares de documentos indexados.',
     ],
     demoIndex: 0,
-    demo: { type: 'mock', component: 'doctag' },
+    demo: { type: 'video', src: '/videos/doctag-preview.mp4' },
     links: { github: 'https://github.com/placeholder/doctag' },
   },
   {
@@ -29,7 +29,7 @@ export const projects: Project[] = [
       '[placeholder] A reescrita trouxe um modelo de estado mais previsível para desenhar nós e arestas interativamente.',
     ],
     demoIndex: 1,
-    demo: { type: 'mock', component: 'graphit' },
+    demo: { type: 'video', src: '/videos/graphit-preview.mp4' },
     links: { github: 'https://github.com/placeholder/graphit' },
   },
   {

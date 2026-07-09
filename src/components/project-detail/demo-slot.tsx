@@ -1,13 +1,7 @@
 import type { Project } from '@/content/types';
-import { getMockComponent } from '@/components/project-mocks/registry';
 
 export function DemoSlot({ demo }: { demo: Project['demo'] }) {
   if (demo.type === 'none') return null;
-
-  if (demo.type === 'mock') {
-    const MockComponent = getMockComponent(demo.component);
-    return MockComponent ? <MockComponent /> : null;
-  }
 
   if (demo.type === 'video') {
     return (
