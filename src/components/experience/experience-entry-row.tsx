@@ -1,5 +1,5 @@
 import type { ExperienceEntry } from '@/content/types';
-import { EntryLogoPlaceholder } from '@/components/shared/entry-logo-placeholder';
+import { EntryLogo } from '@/components/shared/entry-logo';
 import { ProjectChip } from './project-chip';
 
 export function ExperienceEntryRow({ entry }: { entry: ExperienceEntry }) {
@@ -12,7 +12,7 @@ export function ExperienceEntryRow({ entry }: { entry: ExperienceEntry }) {
         }`}
       />
       <div className="flex gap-3.5">
-        <EntryLogoPlaceholder />
+        <EntryLogo logo={entry.logo} alt={entry.company} />
         <div>
           <p
             className={`ui-text-entry-title font-bold leading-tight tracking-tight ${

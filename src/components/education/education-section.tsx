@@ -1,5 +1,5 @@
 import { GraduationCap } from 'lucide-react';
-import { EntryLogoPlaceholder } from '@/components/shared/entry-logo-placeholder';
+import { EntryLogo } from '@/components/shared/entry-logo';
 import { SectionTitle } from '@/components/shared/section-title';
 import { education } from '@/content/education';
 
@@ -10,7 +10,7 @@ export function EducationSection() {
       <ul className="flex flex-col gap-6">
         {education.map((entry) => (
           <li key={`${entry.institution}-${entry.period}`} className="flex gap-3.5">
-            <EntryLogoPlaceholder />
+            <EntryLogo logo={entry.logo} alt={entry.institution} />
             <div>
               <p className="ui-text-entry-title font-bold leading-tight tracking-tight text-fg">
                 {entry.degree}

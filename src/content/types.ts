@@ -50,6 +50,7 @@ export type EducationEntry = {
   degree: string;
   institution: string;
   period: string;
+  logo?: string;
 };
 
 export type Profile = {

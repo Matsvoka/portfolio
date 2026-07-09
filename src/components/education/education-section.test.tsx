@@ -17,7 +17,9 @@ describe('EducationSection', () => {
       expect(screen.getByText(entry.institution)).toBeInTheDocument();
       expect(screen.getByText(entry.period)).toBeInTheDocument();
     }
-    expect(screen.getAllByText('logo')).toHaveLength(education.length);
+    for (const entry of education) {
+      expect(screen.getByAltText(entry.institution)).toBeInTheDocument();
+    }
   });
 
   it('matches the section, role, company, and date typography from experience', () => {
